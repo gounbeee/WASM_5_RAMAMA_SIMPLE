@@ -129,8 +129,10 @@ hogehogeのところを目的に応じて変更するとかで、管理できた
 
 +++
 // SWITCHING 
-$ git checkout -b master
+// ERROR :::  src refspec master does not match any
 https://www.freecodecamp.org/news/error-src-refspec-master-does-not-match-any-how-to-fix-in-git/
+
+$ git checkout -b master
 
 
 
@@ -159,6 +161,7 @@ $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 
 ++++
 
+// < ERROR ::  permission-denied-publickey >
 // https://docs.github.com/en/authentication/troubleshooting-ssh/error-permission-denied-publickey
 
 ssh -T git@github.com
@@ -175,10 +178,6 @@ git remote set-url origin git@github.com:gounbeee/WASM_4_RAMAMA.git
 
 
 
-5. git push
-git push origin master
-って実行するとうまいこといけるはず!!
-
 
 
 ssh-add ~/.ssh/id_rsa_github
@@ -189,6 +188,10 @@ git remote set-url origin git@github.com:gounbeee/WASM_4_RAMAMA.git
 
 
 
+
+5. git push
+git push origin master
+って実行するとうまいこといけるはず!!
 
 
 
