@@ -67,34 +67,34 @@ void ComponentPlayer::Update() {
 
 
 
-	// // WHEN UP KEY PRESSED
-	// if( m_keybrdComponent->Key_Up ) { 
-	// 	//std::cout << "Key_Up" << std::endl;
-	// 	addedVelocity += Vector2D( 0.0f, -5.0f);
-	// }
-	// // WHEN DOWN KEY PRESSED
-	// if( m_keybrdComponent->Key_Down ) { 
-	// 	//std::cout << "Key_Down" << std::endl;
-	// 	addedVelocity += Vector2D( 0.0f, 5.0f );
-	// }
-	// // WHEN LEFT KEY PRESSED
-	// if( m_keybrdComponent->Key_Left ) { 
-	// 	//std::cout << "Key_Left" << std::endl;
-	// 	addedVelocity += Vector2D( -5.0f, 0.0f );
-	// }
-	// // WHEN LEFT KEY PRESSED
-	// if( m_keybrdComponent->Key_Right ) { 
-	// 	//std::cout << "Key_Right" << std::endl;
-	// 	addedVelocity += Vector2D( 5.0f, 0.0f );
-	// }
-	// m_transComponent->SetVelocity( addedVelocity );
+	// WHEN UP KEY PRESSED
+	if( m_keybrdComponent->Key_Up ) { 
+		//std::cout << "Key_Up" << std::endl;
+		addedVelocity += Vector2D( 0.0f, -5.0f);
+	}
+	// WHEN DOWN KEY PRESSED
+	if( m_keybrdComponent->Key_Down ) { 
+		//std::cout << "Key_Down" << std::endl;
+		addedVelocity += Vector2D( 0.0f, 5.0f );
+	}
+	// WHEN LEFT KEY PRESSED
+	if( m_keybrdComponent->Key_Left ) { 
+		//std::cout << "Key_Left" << std::endl;
+		addedVelocity += Vector2D( -5.0f, 0.0f );
+	}
+	// WHEN LEFT KEY PRESSED
+	if( m_keybrdComponent->Key_Right ) { 
+		//std::cout << "Key_Right" << std::endl;
+		addedVelocity += Vector2D( 5.0f, 0.0f );
+	}
+	m_transComponent->SetVelocity( addedVelocity );
 
 
-	// // WHEN WRITE KEY PRESSED
-	// if( m_keybrdComponent->Key_Write ) { 
-	// 	//std::cout << "Key_Write" << std::endl;
-	// 	std::cout << "ComponentPlayer::Update() -- WRITE SOMETHING !!" << std::endl;
-	// }
+	// WHEN WRITE KEY PRESSED
+	if( m_keybrdComponent->Key_Write ) { 
+		//std::cout << "Key_Write" << std::endl;
+		std::cout << "ComponentPlayer::Update() -- WRITE SOMETHING !!" << std::endl;
+	}
 
 
 

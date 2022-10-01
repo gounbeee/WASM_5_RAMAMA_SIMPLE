@@ -18,37 +18,10 @@ export PATH := $(shell pwd)/$(HEADER_DIRS):$(PATH)
 
 
 
-# NATIVE APP
-# SDL2_INC_FLAGS := -I./$(HEADER_DIRS) -I/opt/homebrew/include/SDL2 -D_THREAD_SAFE
-# SDL2_LIB_FLAGS := -L/opt/homebrew/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lz -lzstd
-
-
-
-# emcc main.c \
-# 	-s WASM=1 \
-# 	-s USE_SDL=2 \
-# 	-s USE_SDL_IMAGE=2 \
-# 	-s SDL2_IMAGE_FORMATS='["png"]' \
-# 	--preload-file assets \
-# 	-o index.js
-
-
-
-# emcc -O2 -s WASM=1 -s SIDE_MODULE=1 -o adder.wasm
-
-
-
-
 # WASM APP
 #WASM_FLAGS     := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file assets
-WASM_FLAGS     := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file resources
-#SDL2_INC_FLAGS := -I./$(HEADER_DIRS) -I/opt/homebrew/include/SDL2 -D_THREAD_SAFE
+WASM_FLAGS     := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -O3 --preload-file resources
 SDL2_INC_FLAGS := -I./$(HEADER_DIRS) -I/opt/homebrew/include/SDL2 -D_THREAD_SAFE
-#SDL2_LIB_FLAGS := -L/opt/homebrew/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lz -lzstd
-#SDL2_LIB_FLAGS := -L/opt/homebrew/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lz -lzstd
-
-
-
 
 
 
@@ -65,23 +38,15 @@ OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 
 
 
-# # The final build step.
-# $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-# 	$(CXX) -std=c++17 $(OBJS) -o $@ $(SDL2_LIB_FLAGS)
-# 	# COPY REQUIRED CONTENTS TO BUILD FOLDER
-# 	$(shell cp -R ./\[NEED_TO_DISTRIBUTE]/* ./build )
-
-
-
-
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) $(WASM_FLAGS) -o $(TARGET_EXEC).html 
+	$(CC) $(OBJS) $(WASM_FLAGS) -sLLD_REPORT_UNDEFINED -o $(TARGET_EXEC).html 
 
 
 
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
 	$(CC) $(SDL2_INC_FLAGS) $(WASM_FLAGS) -c $< -o $@
+
 
 
 

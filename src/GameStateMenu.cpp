@@ -1,6 +1,9 @@
 
 #include <GameStateMenu.h>
 
+#include <GameStatePlay.h>
+
+
 const std::string GameStateMenu::s_menuID = "MENU";
 
 
@@ -10,15 +13,14 @@ extern "C" {
 
 
 // CONSTRUCTOR
-//GameStateMenu::GameStateMenu( MultiVectorStr4& xmlData ) {
-GameStateMenu::GameStateMenu() {
+GameStateMenu::GameStateMenu( MultiVectorStr4& xmlData ) {
 	std::cout << "GameStateMenu::GameStateMenu() -- CONSTRUCTOR CALLED" << std::endl;
 	
 
-	// m_xmlData = xmlData;
+	m_xmlData = xmlData;
 
-	// GetTextureInfo( m_xmlData );
-	// GetObjectInfo( m_xmlData );
+	GetTextureInfo( m_xmlData );
+	GetObjectInfo( m_xmlData );
 
 
 }
@@ -38,13 +40,13 @@ bool GameStateMenu::OnEnter() {
 	// TODO :: USE m_textureInfo AND m_objectInfo TO STRINGS 
 
 	// PREPARING TEXTURES
-	Instance_ManagerTexture::Instance()->Load( "resources/texture_btn_01_play.png", "btn_play" , Instance_GameSDL::Instance()->GetRenderer() );
-	Instance_ManagerTexture::Instance()->Load( "resources/texture_btn_02_about.png", "btn_about" , Instance_GameSDL::Instance()->GetRenderer() );
+	// Instance_ManagerTexture::Instance()->Load( "resources/texture_btn_01_play.png", "btn_play" , Instance_GameSDL::Instance()->GetRenderer() );
+	// Instance_ManagerTexture::Instance()->Load( "resources/texture_btn_02_about.png", "btn_about" , Instance_GameSDL::Instance()->GetRenderer() );
 
 
-	// for( int i = 0 ; i < m_textureInfo.size() ; i++ ) {
-	// 	Instance_ManagerTexture::Instance()->Load( m_textureInfo[i][FILENAME] ,  m_textureInfo[i][ID] , Instance_GameSDL::Instance()->GetRenderer() );	
-	// }
+	for( int i = 0 ; i < m_textureInfo.size() ; i++ ) {
+		Instance_ManagerTexture::Instance()->Load( m_textureInfo[i][FILENAME] ,  m_textureInfo[i][ID] , Instance_GameSDL::Instance()->GetRenderer() );	
+	}
 
 
 
@@ -62,38 +64,38 @@ bool GameStateMenu::OnEnter() {
 	// TODO :: HOW TO CONVERT STRINGS FROM VECTOR WITH NULL END
 
 
-	// std::string id_a = m_objectInfo[0][TEXTUREID];
+	std::string id_a = m_objectInfo[0][TEXTUREID];
 	
 
-	// // CHANGING SIZE OF STRING
-	// // http://www.cplusplus.com/reference/string/string/resize/
-	// //unsigned int size_id_a = id_a.size();
-	// //id_a.resize( size_id_a+1, '\0');
-	// Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity( id_a.data() ));
-	// but_a.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[0][XPOS] ) , std::stoi( m_objectInfo[0][YPOS] ) , std::stoi( m_objectInfo[0][VELOX] ), std::stoi( m_objectInfo[0][VELOY] ), std::stoi( m_objectInfo[0][WIDTH] ), std::stoi( m_objectInfo[0][HEIGHT] ), std::stoi( m_objectInfo[0][SCALE] ) );
-	// but_a.AddUIComponent<ComponentUIButton>( GameStateMenu::s_menuToPlay , id_a.data() );
+	// CHANGING SIZE OF STRING
+	// http://www.cplusplus.com/reference/string/string/resize/
+	//unsigned int size_id_a = id_a.size();
+	//id_a.resize( size_id_a+1, '\0');
+	Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity( id_a.data() ));
+	but_a.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[0][XPOS] ) , std::stoi( m_objectInfo[0][YPOS] ) , std::stoi( m_objectInfo[0][VELOX] ), std::stoi( m_objectInfo[0][VELOY] ), std::stoi( m_objectInfo[0][WIDTH] ), std::stoi( m_objectInfo[0][HEIGHT] ), std::stoi( m_objectInfo[0][SCALE] ) );
+	but_a.AddUIComponent<ComponentUIButton>( GameStateMenu::s_menuToPlay , id_a.data() );
 	
 
 
-	// std::string id_b = m_objectInfo[1][TEXTUREID];
-	// //unsigned int size_id_b = id_b.size();
-	// //id_b.resize( size_id_b+1, '\0');
-	// Entity& but_b( Instance_ManagerEntity::Instance()->AddEntity( id_b.data() ));
-	// but_b.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[1][XPOS] ) , std::stoi( m_objectInfo[1][YPOS] ) , std::stoi( m_objectInfo[1][VELOX] ), std::stoi( m_objectInfo[1][VELOY] ), std::stoi( m_objectInfo[1][WIDTH] ), std::stoi( m_objectInfo[1][HEIGHT] ), std::stoi( m_objectInfo[1][SCALE] ) );
-	// but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_exitFromMenu , id_b.data() );
+	std::string id_b = m_objectInfo[1][TEXTUREID];
+	//unsigned int size_id_b = id_b.size();
+	//id_b.resize( size_id_b+1, '\0');
+	Entity& but_b( Instance_ManagerEntity::Instance()->AddEntity( id_b.data() ));
+	but_b.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[1][XPOS] ) , std::stoi( m_objectInfo[1][YPOS] ) , std::stoi( m_objectInfo[1][VELOX] ), std::stoi( m_objectInfo[1][VELOY] ), std::stoi( m_objectInfo[1][WIDTH] ), std::stoi( m_objectInfo[1][HEIGHT] ), std::stoi( m_objectInfo[1][SCALE] ) );
+	but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_exitFromMenu , id_b.data() );
 
 
 
 
 
 	
-	Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity("btn_play"));
-	but_a.AddComponent<ComponentTransform>( 200, 100, 0, 0, 400, 100, 1 );
-	but_a.AddUIComponent<ComponentUIButton>( GameStateMenu::s_menuToPlay , "btn_play" );
+	// Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity("btn_play"));
+	// but_a.AddComponent<ComponentTransform>( 200, 100, 0, 0, 400, 100, 1 );
+	// but_a.AddUIComponent<ComponentUIButton>( GameStateMenu::s_menuToPlay , "btn_play" );
 	
-	Entity& but_b( Instance_ManagerEntity::Instance()->AddEntity("btn_about"));
-	but_b.AddComponent<ComponentTransform>( 200, 300, 0, 0, 400, 100, 1 );
-	but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_exitFromMenu , "btn_about" );
+	// Entity& but_b( Instance_ManagerEntity::Instance()->AddEntity("btn_about"));
+	// but_b.AddComponent<ComponentTransform>( 200, 300, 0, 0, 400, 100, 1 );
+	// but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_exitFromMenu , "btn_about" );
 	
 
     std::cout << "GameStateMenu::OnEnter() -- ENTERING MENU GAMESTATE" << std::endl;
@@ -101,22 +103,22 @@ bool GameStateMenu::OnEnter() {
 }
 
 
-// void GameStateMenu::GetTextureInfo( MultiVectorStr4& xmlData ) {
+void GameStateMenu::GetTextureInfo( MultiVectorStr4& xmlData ) {
 
-// 	for( int i = 0; i < xmlData[MENU][TEXTURES].size() ; i++ ) {		// xmlData[0][0] IS THE LAYER OF TEXTURES
-// 		m_textureInfo.push_back( xmlData[MENU][TEXTURES][i] );
-// 	}
+	for( int i = 0; i < xmlData[MENU][TEXTURES].size() ; i++ ) {		// xmlData[0][0] IS THE LAYER OF TEXTURES
+		m_textureInfo.push_back( xmlData[MENU][TEXTURES][i] );
+	}
 
-// }
+}
 
 
-// void GameStateMenu::GetObjectInfo( MultiVectorStr4& xmlData ) {
+void GameStateMenu::GetObjectInfo( MultiVectorStr4& xmlData ) {
 
-// 	for( int i = 0; i < xmlData[MENU][OBJECTS].size() ; i++ ) {		// xmlData[0][1] IS THE LAYER OF OBJECTS
-// 		m_objectInfo.push_back( xmlData[MENU][OBJECTS][i] );
-// 	}
+	for( int i = 0; i < xmlData[MENU][OBJECTS].size() ; i++ ) {		// xmlData[0][1] IS THE LAYER OF OBJECTS
+		m_objectInfo.push_back( xmlData[MENU][OBJECTS][i] );
+	}
 
-// }
+}
 
 
 
@@ -155,12 +157,13 @@ void GameStateMenu::s_menuToPlay() {
 
 
 
-   //Instance_GameSDL::Instance()->GetGameStateMachine()->ChangeState( new GameStatePlay( GameSDL::s_xmlData ) );
+
+	Instance_GameSDL::Instance()->GetGameStateMachine()->ChangeState( new GameStatePlay( GameSDL::s_xmlData ) );
 
 
 
 
-    std::cout << "Play Button Clicked\n";
+   	std::cout << "Play Button Clicked\n";
 }
 
 void GameStateMenu::s_exitFromMenu(){

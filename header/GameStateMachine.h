@@ -5,7 +5,7 @@
 #include <stack>
 #include <vector>
 #include "GameState.h"
-// #include "GameStatePlay.h"
+#include "GameStatePlay.h"
 
 class GameStateMachine
 {

@@ -7,14 +7,15 @@
 
 #include "GlobalTypes.h"
 // #include "GlobalFunctions.h"
-// #include "GlobalMath.h"
+#include "GlobalMath.h"
 #include "ManagerEntity.h"
 #include "ManagerTexture.h"
 #include "ManagerInput.h"
-// #include "ManagerXML.h"
+#include "ManagerXML.h"
 #include "GameStateMenu.h"
-// #include "GameStatePause.h"
-// #include "GameStatePlay.h"
+#include "GameStatePause.h"
+#include "GameStatePlay.h"
+
 
 class GameStateMachine;
 

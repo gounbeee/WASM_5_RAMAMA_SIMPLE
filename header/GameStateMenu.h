@@ -7,9 +7,9 @@
 
 #include "GameState.h"
 #include "GameStateMachine.h"
-
+#include "GameSDL.h"
 #include "ComponentUIButton.h"
-// #include "ComponentInputKeyboard.h"
+#include "ComponentInputKeyboard.h"
 
 #include "ManagerTexture.h"
 
@@ -18,8 +18,8 @@ class GameStateMenu : public GameState {
 
 public:
 
-	//GameStateMenu( MultiVectorStr4& xmlData );
-	GameStateMenu();
+	GameStateMenu( MultiVectorStr4& xmlData );
+	//GameStateMenu();
 	~GameStateMenu();
 
 	virtual void Update();
@@ -30,8 +30,8 @@ public:
 
 	virtual std::string GetStateID() const { return s_menuID; }
 
-	// virtual void GetTextureInfo( MultiVectorStr4& xmlData );
-	// virtual void GetObjectInfo( MultiVectorStr4& xmlData );
+	virtual void GetTextureInfo( MultiVectorStr4& xmlData );
+	virtual void GetObjectInfo( MultiVectorStr4& xmlData );
 
 
 

@@ -127,6 +127,20 @@ hogehogeのところを目的に応じて変更するとかで、管理できた
 
 
 
++++
+// SWITCHING 
+$ git checkout -b master
+https://www.freecodecamp.org/news/error-src-refspec-master-does-not-match-any-how-to-fix-in-git/
+
+
+
+
+
+
+
+
+
+
 4. git remote originの設定変更
 ハマりポイント2の登場。
 

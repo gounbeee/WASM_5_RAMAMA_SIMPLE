@@ -103,17 +103,17 @@ void GameSDL::Initialize( const char* appName , unsigned int xPos , unsigned int
 	// ************************************** //
 
 
-	// // INITIALIZE MANAGER-XML
-	// ManagerXML managerXML;															// TODO :: ***** MAKE THE ARCHIVE *****
-	// 																				// https://people.eecs.ku.edu/~jrmiller/Courses/JavaToC++/StackAllocatedObjects.html
-	// 																				// IN C++, THIS IS A LOCAL VARIABLE AND INITIALIZED 
-	// 																				// WITH NONE-PARAMETER CONTRUCTOR ( ManagerXML::ManagerXML() ),
-	// 																				// ALLOCATING AT A STACK MEMORY( NOT USING 'NEW' ),
-	// 																				// THEN WILL BE RELEASED AT THE END OF THIS FUNCTION ( GameSDL::Initialize() ).
-	// 																				// **** BECAUSE THESE ARE DELETING SOON,
-	// 																				//      SO WE NEED TO SEND THE DATA TO THE PROPER LOCATION ****
+	// INITIALIZE MANAGER-XML
+	ManagerXML managerXML;															// TODO :: ***** MAKE THE ARCHIVE *****
+																					// https://people.eecs.ku.edu/~jrmiller/Courses/JavaToC++/StackAllocatedObjects.html
+																					// IN C++, THIS IS A LOCAL VARIABLE AND INITIALIZED 
+																					// WITH NONE-PARAMETER CONTRUCTOR ( ManagerXML::ManagerXML() ),
+																					// ALLOCATING AT A STACK MEMORY( NOT USING 'NEW' ),
+																					// THEN WILL BE RELEASED AT THE END OF THIS FUNCTION ( GameSDL::Initialize() ).
+																					// **** BECAUSE THESE ARE DELETING SOON,
+																					//      SO WE NEED TO SEND THE DATA TO THE PROPER LOCATION ****
 	
-	// GameSDL::s_xmlData = managerXML.GetXmlOutput();
+	GameSDL::s_xmlData = managerXML.GetXmlOutput();
 
 
 
@@ -123,8 +123,8 @@ void GameSDL::Initialize( const char* appName , unsigned int xPos , unsigned int
 
 	// INITIALIZE STATE MACHINE
 	m_pStateMachine = new GameStateMachine();
-	//m_pStateMachine->ChangeState( new GameStateMenu( GameSDL::s_xmlData ) );
-	m_pStateMachine->ChangeState( new GameStateMenu() );
+	m_pStateMachine->ChangeState( new GameStateMenu( GameSDL::s_xmlData ) );
+	//m_pStateMachine->ChangeState( new GameStateMenu() );
 
 
 	// // INITIALIZE MANAGER-ENTITY

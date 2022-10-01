@@ -329,7 +329,7 @@ bool ManagerInput::IsKeyDown(SDL_Scancode key) const {                          
 
     // TO CHECK THE KEY NAME FROM SCANCODE
     // https://wiki.libsdl.org/SDL_GetKeyName
-    // std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
+    std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
 
     if(m_keystates != 0){
         if(m_keystates[ key ] == 1){
@@ -346,7 +346,7 @@ bool ManagerInput::IsKeyUp(SDL_Scancode key) const {                            
 
     // TO CHECK THE KEY NAME FROM SCANCODE
     // https://wiki.libsdl.org/SDL_GetKeyName
-    // std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
+    std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
 
     if(m_keystates != 0){
         if(m_keystates[ key ] == 0){

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<STATES>
+
+    <MENU>
+        <TEXTURES>
+            <texture filename="resources/texture_btn_01_play.png" ID="btn_play"/>
+            <texture filename="resources/texture_btn_02_about.png" ID="btn_about"/>
+        </TEXTURES>
+
+        <OBJECTS>
+            <object type="MenuButton" x="200" y="100" velocityX="0" velocityY="0" width="400" height="100" scale="1" textureID="btn_play"/>
+            <object type="MenuButton" x="200" y="300" velocityX="0" velocityY="0" width="400" height="100" scale="1" textureID="btn_about"/>
+        </OBJECTS>
+    </MENU>
+
+
+    <PLAY>
+        <TEXTURES>
+            <texture filename="resources/texture_char_01.png" ID="char_01"/>
+            <texture filename="resources/texture_btn_05_mainmenu.png" ID="btn_mainmenu"/>
+        </TEXTURES>
+
+        <OBJECTS>
+            <object type="Character" x="400" y="225" velocityX="0" velocityY="0" width="32" height="32" scale="1" textureID="char_01" startColumn="1" startRow="1" animFrames="2" animSpeed="2.0"/>
+            <object type="MenuButton" x="0" y="0" velocityX="0" velocityY="0" width="200" height="100" scale="1" textureID="btn_mainmenu"/>
+        </OBJECTS>
+    </PLAY>
+
+</STATES>
