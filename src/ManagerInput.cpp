@@ -319,7 +319,7 @@ bool ManagerInput::GetMouseButtonState( int buttonNumber ) const {
 
 
 const Uint8* ManagerInput::GetKeyState() const {
-	if( m_keystates != 0 ){
+	if( m_keystates != 0 ) {
 		return m_keystates;
     }
 }
@@ -329,7 +329,7 @@ bool ManagerInput::IsKeyDown(SDL_Scancode key) const {                          
 
     // TO CHECK THE KEY NAME FROM SCANCODE
     // https://wiki.libsdl.org/SDL_GetKeyName
-    std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
+    //std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
 
     if(m_keystates != 0){
         if(m_keystates[ key ] == 1){
@@ -346,7 +346,7 @@ bool ManagerInput::IsKeyUp(SDL_Scancode key) const {                            
 
     // TO CHECK THE KEY NAME FROM SCANCODE
     // https://wiki.libsdl.org/SDL_GetKeyName
-    std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
+    //std::cout << SDL_GetKeyName( SDL_GetKeyFromScancode(key) ) << "\n";
 
     if(m_keystates != 0){
         if(m_keystates[ key ] == 0){
@@ -410,7 +410,7 @@ void ManagerInput::onKeyUp(){
 void ManagerInput::onMouseMove( SDL_Event &event ){
     m_mousePosition->setX(event.motion.x);
     m_mousePosition->setY(event.motion.y);
-    //std::cout << "MOUSE X:  " << event.motion.x << "  MOUSE Y:  " << event.motion.y << "\n";
+    std::cout << "MOUSE X:  " << event.motion.x << "  MOUSE Y:  " << event.motion.y << "\n";
 }
 
 

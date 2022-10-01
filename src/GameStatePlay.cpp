@@ -52,7 +52,7 @@ bool GameStatePlay::OnEnter() {                                                 
 	std::string id_player = m_objectInfo[0][TEXTUREID];
 	Entity& player( Instance_ManagerEntity::Instance()->AddEntity( id_player.data() ));
 	player.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[0][XPOS] ) , std::stoi( m_objectInfo[0][YPOS] ) , std::stoi( m_objectInfo[0][VELOX] ), std::stoi( m_objectInfo[0][VELOY] ), std::stoi( m_objectInfo[0][WIDTH] ), std::stoi( m_objectInfo[0][HEIGHT] ), std::stoi( m_objectInfo[0][SCALE] ) );
-	//player.AddComponent<ComponentInputKeyboard>( SDL_SCANCODE_UP, SDL_SCANCODE_RIGHT, SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT, SDL_SCANCODE_SPACE );
+	player.AddComponent<ComponentInputKeyboard>( SDL_SCANCODE_UP, SDL_SCANCODE_RIGHT, SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT, SDL_SCANCODE_SPACE );
 	player.AddComponent<ComponentPlayer>( id_player.data() , std::stoi( m_objectInfo[0][ANIMFRAMES]) , std::stoi( m_objectInfo[0][ANIMSPEED] ) );
 
 	std::string id_btn_mainmenu = m_objectInfo[1][TEXTUREID];

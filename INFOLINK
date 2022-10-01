@@ -197,6 +197,14 @@ git push origin master
 
 
 
+git log --oneline --graph --all
+git status
+
+https://qiita.com/yyy752/items/414d890c8d0cc96c6ede
+
+https://www.freecodecamp.org/news/error-failed-to-push-some-refs-to-how-to-fix-in-git/#:~:text=This%20error%20mainly%20occurs%20when,before%20pushing%20your%20own%20changes.
+
+
 
 
 

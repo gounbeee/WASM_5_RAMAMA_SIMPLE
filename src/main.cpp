@@ -10,20 +10,6 @@
 #include <GameSDL.h>
 
 
-#define WINDOW_WIDTH    640
-#define WINDOW_HEIGHT   480
-
-const unsigned int size = 64;
-
-SDL_Window *window = NULL;
-SDL_Renderer *renderer = NULL;
-
-SDL_Point velocity = {0, 0};
-SDL_Rect sprite = {0, 0, size, size};
-SDL_Texture *texture = NULL;
-
-
-
 
 
 

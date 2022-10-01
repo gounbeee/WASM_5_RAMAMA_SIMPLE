@@ -37,7 +37,7 @@ void ComponentPlayer::Initialize() {
 	m_transComponent = owner->GetComponent<ComponentTransform>();
 
 	// GETTING KEYBOARD INPUT COMPONENT
-	//m_keybrdComponent = owner->GetComponent<ComponentInputKeyboard>();
+	m_keybrdComponent = owner->GetComponent<ComponentInputKeyboard>();
 
 	// GETTING TEXTURE MANAGER
 	m_textureManager = Instance_ManagerTexture::Instance();
