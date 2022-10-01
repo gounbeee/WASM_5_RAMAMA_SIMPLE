@@ -1,15 +1,8 @@
 INFOLINK
 
+// --------------------------EMSCRIPTEN------------------------------
 
-// < Compiling C to WebAssembly without Emscripten >
-https://surma.dev/things/c-to-webassembly/
-https://surma.dev/things/raw-wasm/
-
-
-
-
-
-// < COMPILING WITHOUT GLUE CODE >
+// < COMPILING WITHOUT GLUE CODE USING EMSCRIPTEN >
 
 You can use emscripten to generate fairly minimal code output.
 
@@ -27,6 +20,26 @@ emcc -O2 -s WASM=1 -s SIDE_MODULE=1 -o adder.wasm
 
 
 
+
+// < BINARYEN >
+/Volumes/ROOT/ROOT/emsdk/upstream/emscripten/emcc: line 36: /Volumes/ROOT/ROOT/emsdk/python/3.9.2_64bit/bin/python3: Bad CPU type in executable
+/Volumes/ROOT/ROOT/emsdk/upstream/emscripten/emcc: line 36: /Volumes/ROOT/ROOT/emsdk/python/3.9.2_64bit/bin/python3: Undefined error: 0
+siyoungchoi@odada-iMac2 WASM_4_BASIC_EMCC_SDL % brew install binaryen
+
+
+
+
+
+
+
+
+// --------------------------LLVM------------------------------
+
+// < Compiling C to WebAssembly without Emscripten >
+https://surma.dev/things/c-to-webassembly/
+https://surma.dev/things/raw-wasm/
+
+
 // < error: unknown target triple 'xxx', please use ....... >
 https://github.com/WebAssembly/wasi-sdk/issues/172
 
@@ -37,5 +50,115 @@ If you need to have llvm first in your PATH, run:
 For compilers to find llvm you may need to set:
   export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
   export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+
+
+
+
+
+
+
+
+
+// ABOUT GIT
+// < Error: Permission denied (publickey) >
+https://yoshiyoshifujii.hatenablog.com/entry/2014/08/12/230144
+
+
+1. SSHキーを作成
+以下のコマンドを実行して作成する。
+
+$ cd ~/.ssh
+$ ssh-keygen
+  Generating public/private rsa key pair.
+  Enter file in which to save the key (/Users/xxx/.ssh/id_rsa): id_rsa_github
+  Enter passphrase (empty for no passphrase):
+  Enter same passphrase again:
+  Your identification has been saved in id_rsa_github.
+  Your public key has been saved in id_rsa_github.pub.
+  ...
+冒頭に述べたとおり、 ~/.ssh/id_rsaに出力したくないので、~/.sshディレクトリに移動してから、id_rsa_githubって名前を指定してる。
+
+これで~/.sshディレクトリ直下に、
+
+id_rsa_github
+id_rsa_github.pub
+のファイルができているはず。
+
+
+
+
+2. GitHubにSSHキーを登録
+次に、id_rsa_github.pubの中身をGitHubに登録するのだが、、、
+
+このあたりは、GitHubなり、他サイトなりを参照いただきたく、省略させていただきます。
+
+※一応、公式のリンクを貼っときます
+Generating SSH Keys · GitHub Help
+
+
+
+
+3. ~/.ssh/configに追加
+Vimなりで、以下のファイルを開いて追記する。
+
+$ vim ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile "/Users/xxx/.ssh/id_rsa_github"
+ここでハマりポイント1の登場。
+
+Host github.com
+のところは、4の手順で実施する、 git://github.com/... のgithub.comとそろえないと認識されないから注意。
+
+つまり、
+
+Host github.com.hogehoge
+とかして、 git://github.com.hogehoge/... ってしても良い。
+
+hogehogeのところを目的に応じて変更するとかで、管理できたりするだろう。
+
+
+
+
+
+4. git remote originの設定変更
+ハマりポイント2の登場。
+
+HTTPSでcloneしてるので、以下のコマンドを実行して、SSHでremote接続するように変更する。
+
+$ git remote -v
+  origin  https://github.com/USERNAME/REPOSITORY.git (fetch)
+  origin  https://github.com/USERNAME/REPOSITORY.git (push)
+で、remoteがHTTPSになってることを確認して、
+
+$ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+って実行してやると、OK。
+
+
+
+
+
+5. git push
+git push origin master
+って実行するとうまいこといけるはず!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://docs.github.com/en/authentication/troubleshooting-ssh/error-permission-denied-publickey
 
 
