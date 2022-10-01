@@ -65,6 +65,8 @@ For compilers to find llvm you may need to set:
 https://yoshiyoshifujii.hatenablog.com/entry/2014/08/12/230144
 
 
+
+
 1. SSHキーを作成
 以下のコマンドを実行して作成する。
 
@@ -123,6 +125,8 @@ hogehogeのところを目的に応じて変更するとかで、管理できた
 
 
 
+
+
 4. git remote originの設定変更
 ハマりポイント2の登場。
 
@@ -135,6 +139,23 @@ $ git remote -v
 
 $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 って実行してやると、OK。
+
+
+
+
+++++
+
+// https://docs.github.com/en/authentication/troubleshooting-ssh/error-permission-denied-publickey
+
+ssh -T git@github.com
+
+eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/id_rsa_github
+
+
+git remote set-url origin git@github.com:gounbeee/WASM_4_RAMAMA.git
+
 
 
 
@@ -159,6 +180,5 @@ git push origin master
 
 
 
-// https://docs.github.com/en/authentication/troubleshooting-ssh/error-permission-denied-publickey
 
 
