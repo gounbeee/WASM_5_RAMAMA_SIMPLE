@@ -8,6 +8,7 @@ extern "C" {
 
 
 
+// LayerTile CLASS CONTAINTS ACTUAL TILE IDs FILLING THE ENTIRE MAP !
 
 
 LayerTile::LayerTile(	int tileSize, 

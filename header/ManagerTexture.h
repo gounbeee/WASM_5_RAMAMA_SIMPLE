@@ -47,6 +47,8 @@ public:
 
 	void ClearFromTextureMap( std::string id );
 
+    std::map<std::string, SDL_Texture*> GetTextureMaps() const { return m_textureMap; }
+
 
 private:
 

@@ -4,14 +4,13 @@
 
 #include <iostream>
 #include <vector>
-
 #include "GameState.h"
 #include "GameStateMachine.h"
 #include "GameSDL.h"
 #include "ComponentUIButton.h"
 #include "ComponentInputKeyboard.h"
-
 #include "ManagerTexture.h"
+#include "Level.h"
 
 
 class GameStateMenu : public GameState {
@@ -41,10 +40,19 @@ private:
 	
 	// CALLBACK FUNCTION FOR MENU ITEMS
 	static void s_menuToPlay();
-	static void s_exitFromMenu();
+	static void s_aboutBtn();
+
+	// Level* m_pLevel;
+	// int m_tileNumColumns;
+	// int m_tileNumRows;
+	// int m_tileSize;
 
 
+
+	
 };
+
+
 
 
 #endif

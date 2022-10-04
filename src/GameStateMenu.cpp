@@ -4,6 +4,7 @@
 #include <GameStatePlay.h>
 
 
+
 const std::string GameStateMenu::s_menuID = "MENU";
 
 
@@ -11,6 +12,13 @@ const std::string GameStateMenu::s_menuID = "MENU";
 extern "C" {
 
 
+
+// PREPARING LEVEL
+Level* m_pLevel;
+
+
+
+// TESTING JSON LIBRARY
 
 // CONSTRUCTOR
 GameStateMenu::GameStateMenu( MultiVectorStr4& xmlData ) {
@@ -82,7 +90,7 @@ bool GameStateMenu::OnEnter() {
 	//id_b.resize( size_id_b+1, '\0');
 	Entity& but_b( Instance_ManagerEntity::Instance()->AddEntity( id_b.data() ));
 	but_b.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[1][XPOS] ) , std::stoi( m_objectInfo[1][YPOS] ) , std::stoi( m_objectInfo[1][VELOX] ), std::stoi( m_objectInfo[1][VELOY] ), std::stoi( m_objectInfo[1][WIDTH] ), std::stoi( m_objectInfo[1][HEIGHT] ), std::stoi( m_objectInfo[1][SCALE] ) );
-	but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_exitFromMenu , id_b.data() );
+	but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_aboutBtn , id_b.data() );
 
 
 
@@ -136,6 +144,14 @@ void GameStateMenu::Render() {
 
 	//std::cout << "GameStateMenu::Render() -- RENDERING MENU GAMESTATE......" << std::endl;
 	
+
+	// RENDERING LEVEL WITH CAMERA
+	if( m_pLevel != 0 ) {
+		m_pLevel->Render();
+	}
+
+
+
 }
 
 bool GameStateMenu::OnExit() {
@@ -166,12 +182,31 @@ void GameStateMenu::s_menuToPlay() {
    	std::cout << "Play Button Clicked\n";
 }
 
-void GameStateMenu::s_exitFromMenu(){
+
+
+
+
+
+
+void GameStateMenu::s_aboutBtn(){
 
     Instance_GameSDL::Instance()->SetLoop( false );
-    std::cout << "Exit Button Clicked\n";
+
+
+    std::cout << "ABOUT Button Clicked\n";
+
+
+
+
+    LevelDataLoader levelDataLoader;
+    m_pLevel = levelDataLoader.ParseTLSetterJson("resources/map01_json.json");			// PATH IS IMPORTANT !    TODO :: COLLECT TO ONE PLACE ?
+
+
 
 }
+
+
+
 
 
 }

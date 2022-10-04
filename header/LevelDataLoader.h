@@ -17,8 +17,19 @@ OR, YOU WILL GET LNK2019 ERROR !!!
 #include <iostream>
 #include <vector>
 #include <string>
-#include <zlib.h>
 
+// ------------------------------------------
+// **** THIS CLASS LevelDataLoader WORKS ****
+//    
+//      < RETRIEVING DATA > WITH   ::  tinyxml, zlib, nlohmann/json, base64
+//      THEN
+//      < CONSTRUCTING >           ::  Tileset STRUCT + LayerTile OBJECT
+//      FINALLY, 
+//      < CONSTRUCTING >           ::  Level OBJECT 
+//      
+
+#include <zlib.h>                   
+#include <nlohmann/json.hpp>
 #include "ManagerTexture.h"
 #include "ManagerEntity.h"
 #include "GameSDL.h"
@@ -34,6 +45,31 @@ class Layer;
 class LayerTile;
 
 
+using nJson = nlohmann::json;
+
+// THIS STRUCT IS REPRESETATION OF JSON FILE
+// EXPORTED FROM TILESETTER APPLICATION !
+struct TlSttrJsn_Lyr_t {
+
+    int index;
+    std::string name;
+    nJson::array_t positions;
+    int tileCounts;
+
+};
+
+struct TlSttrJsn_t {
+
+    int tile_size;
+    int map_width;
+    int map_height;
+    int layerCount;
+    std::string textureFile;
+    std::vector<TlSttrJsn_Lyr_t> layers;
+
+};
+
+
 class LevelDataLoader {
 
 public:
@@ -42,11 +78,20 @@ public:
 	int GetTileNumColumns() const { return m_width; }
 	int GetTileNumRows() const { return m_height; }
 	int GetTileSize() const { return m_tileSize; }
+    Level* ParseTLSetterJson(const char *jsonFile);
 
 private:
 
     void parseTilesets( TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
     void parseTileLayer( TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, const std::vector<Tileset>* pTilesets);
+    std::string readFileIntoString3(std::string& path);
+    std::string getJsonTilesData(nJson::iterator iter, int layerInd);
+    SDL_Point getsize(SDL_Texture *texture);
+
+    void parseTilesetsJson( TlSttrJsn_t jsonObj, std::vector<Tileset>* pTilesets);
+    void parseTileLayerJson(TlSttrJsn_t jsonObj, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets);
+
+
 
     int m_tileSize;
     int m_width;
