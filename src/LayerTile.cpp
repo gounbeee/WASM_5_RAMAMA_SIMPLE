@@ -53,14 +53,14 @@ void LayerTile::SetVelocity( Vector2D vel ) {
 
 
 void LayerTile::Render() {
-    int x, y, x2, y2 = 0;
-    x = m_position.getX() / m_tileSize;                                     // m_position :: POSITION OF MAP (DEFAULT VALUE = 0,0)
+    //int x, y, x2, y2 = 0;
+    //x = m_position.getX() / m_tileSize;                                     // m_position :: POSITION OF MAP (DEFAULT VALUE = 0,0)
                                                                             // m_tileSize = 32
                                                                             // x  = SCALED VALUE BY 32 ( 1 : 32 )
-    y = m_position.getY() / m_tileSize;                                     // x2 = MODULATED VALUE BY 32 ( 0 ~ 32 LOOPING VALUE )
+    //y = m_position.getY() / m_tileSize;                                     // x2 = MODULATED VALUE BY 32 ( 0 ~ 32 LOOPING VALUE )
 
-    x2 = int(m_position.getX()) % m_tileSize;
-    y2 = int(m_position.getY()) % m_tileSize;
+    //x2 = int(m_position.getX()) % m_tileSize;
+    //y2 = int(m_position.getY()) % m_tileSize;
 
 
     // std::cout << "m_position.getX()  ---     " << m_position.getX() << std::endl;
@@ -72,7 +72,8 @@ void LayerTile::Render() {
     for(int i = 0; i < m_numRows; i++) {
         for(int j = 0; j < m_numColumns; j++) {
 
-            int id = m_tileIDs[i+y][j+x];
+            //int id = m_tileIDs[i+y][j+x];
+            int id = m_tileIDs[i][j];
 
             if(id == 0) {
                 continue;
@@ -86,10 +87,10 @@ void LayerTile::Render() {
             Instance_ManagerTexture::Instance()->RenderTile(tileset.name,
                                                     0,                                      // MARGIN
                                                     0,                                      // SPACING
-                                                    (j * m_tileSize) - x2,                  // HORIZONTAL STARTING POSITION ON THE SOURCE TEXTURE
-                                                    (i * m_tileSize) - y2,                  // VERTICAL   STARTING POSITION ON THE SOURCE TEXTURE
-                                                    //(j * m_tileSize)+m_position.getX(),                  // HORIZONTAL STARTING POSITION ON THE SOURCE TEXTURE
-                                                    //(i * m_tileSize)+m_position.getY(),                  // VERTICAL   STARTING POSITION ON THE SOURCE TEXTURE
+                                                    //(j * m_tileSize) - x2,                  // HORIZONTAL STARTING POSITION ON THE SOURCE TEXTURE
+                                                    //(i * m_tileSize) - y2,                  // VERTICAL   STARTING POSITION ON THE SOURCE TEXTURE
+                                                    (j * m_tileSize) + m_position.getX(),                  // HORIZONTAL STARTING POSITION ON THE SOURCE TEXTURE
+                                                    (i * m_tileSize) + m_position.getY(),                  // VERTICAL   STARTING POSITION ON THE SOURCE TEXTURE
                                                     m_tileSize,                                             // WIDTH OF FOCUSED AREA IN TEXTURE SPACE
                                                     m_tileSize,                                             // HEIGHT OF FOCUSED AREA IN TEXTURE SPACE
 

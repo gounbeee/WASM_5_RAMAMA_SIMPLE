@@ -80,8 +80,11 @@ void ManagerTexture::RenderFrame(	std::string id,
                                                                                                 // width * currentFrame IS THE "CURSOR" TO ANIMATE
     srcRect.y = height * (currentRow -1);                                                       // STARTING POINT Y OF SOURCE TEXTURE
 
-    srcRect.w = destRect.w = width;                                                             // WE DON'T WANT TO BE SCALED SO RECTANGLE AREA OF TEXTURE SHOULD BE SAME
-    srcRect.h = destRect.h = height;                                                            // WE DON'T WANT TO BE SCALED SO RECTANGLE AREA OF TEXTURE SHOULD BE SAME
+    srcRect.w = width;                                                             // WE DON'T WANT TO BE SCALED SO RECTANGLE AREA OF TEXTURE SHOULD BE SAME
+    srcRect.h = height;                                                            // WE DON'T WANT TO BE SCALED SO RECTANGLE AREA OF TEXTURE SHOULD BE SAME
+
+    destRect.w = width;  
+    destRect.h = height; 
 
     destRect.x = x;                                                                             // DESTINATION AREA POSITION X OF THE SCREEN
     destRect.y = y;                                                                             // DESTINATION AREA POSITION Y OF THE SCREEN
@@ -108,13 +111,22 @@ void ManagerTexture::RenderTile(	std::string id,
     SDL_Rect destRect;
     srcRect.x = margin + (spacing + width) * currentFrame;
     srcRect.y = margin + (spacing + height) * currentRow;
-    srcRect.w = destRect.w = width;
-    srcRect.h = destRect.h = height;
+    
+    srcRect.w = width;
+    srcRect.h = height;    
+
+    destRect.w = width * 3;
+    destRect.h = height * 3;
 
 
-	destRect.x = x  - (int) Instance_GameSDL::Instance()->GetCamera()->x;
-    destRect.y = y - (int) Instance_GameSDL::Instance()->GetCamera()->y;
+	//destRect.x = x  - (int) Instance_GameSDL::Instance()->GetCamera()->x;
+    //destRect.y = y - (int) Instance_GameSDL::Instance()->GetCamera()->y;
+   
+    destRect.x = x * 3 - (int) Instance_GameSDL::Instance()->GetCamera()->x;
+    destRect.y = y * 3 - (int) Instance_GameSDL::Instance()->GetCamera()->y;
 
+    //destRect.x = x * 2;
+    //destRect.y = y * 2; 
 
 
     SDL_RenderCopyEx(pRenderer,				m_textureMap[id],	&srcRect,					&destRect,						0,					0,		SDL_FLIP_NONE);
@@ -125,6 +137,7 @@ void ManagerTexture::RenderTile(	std::string id,
 void ManagerTexture::ClearFromTextureMap( std::string id ) {
     m_textureMap.erase( id );
 }
+
 
 
 }

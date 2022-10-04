@@ -41,14 +41,6 @@ bool GameStatePlay::OnEnter() {                                                 
     
 
 
-    std::vector<Layer*>* layerPnt = m_pLevel->GetLayers();
-    std::vector<Layer*> lyList = *layerPnt;
-    //std::cout << lyList.size() << std::endl;
-
-
-	//lyList[0]->SetVelocity( Vector2D{ 100.0f, 100.0f } );
-
-
 
 	// std::cout << "m_pLevel is ...      " << m_pLevel << std::endl;
 	// std::cout << "layerPnt is ...      " << layerPnt << std::endl;
@@ -108,6 +100,25 @@ void GameStatePlay::Update() {
 	if( m_pLevel != 0 ) {
 		m_pLevel->Update();
 	}
+
+
+
+
+
+
+
+	// BG ANIMTION
+
+    std::vector<Layer*>* layerPnt = m_pLevel->GetLayers();
+    std::vector<Layer*> lyList = *layerPnt;
+
+	lyList[0]->SetVelocity( Vector2D{ -0.5f, 0.0f } );
+	lyList[1]->SetVelocity( Vector2D{ -0.7f, 0.0f } );
+
+
+
+
+
 
 
 

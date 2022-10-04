@@ -54,8 +54,8 @@ const unsigned int DELAY_TIME = (unsigned int) (1000.0f / (float)FPS);
 const int GAME_WIDTH = 800;
 const int GAME_HEIGHT = 600;
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 1600;
+const int SCREEN_HEIGHT = 1200;
 
 Uint32 frameStart, frameTime;
 
