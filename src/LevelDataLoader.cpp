@@ -269,11 +269,8 @@ Level* LevelDataLoader::ParseTLSetterJson(const char *jsonFile) {
 
     for (nJson::iterator it = mapJsonObj.begin(); it != mapJsonObj.end(); ++it) {
         
-        //std::cout << it.key() << " : " << it.value() << "\n";
+        
             
-        // STORE LAYER COUNT TO STRUCT
-        std::cout << "**** THERE ARE < " << it.value().size() << " > LAYERS !!!!" << std::endl;
-        tlSttrJsn.layerCount = it.value().size();
 
 
         // SEARCHING FOR LAYERS ARRAY
@@ -290,7 +287,13 @@ Level* LevelDataLoader::ParseTLSetterJson(const char *jsonFile) {
         if( it.key() == "map_height" ) tlSttrJsn.map_height = it.value();
         // GETTING layers VALUE FROM JSON
         if( it.key() == "layers" ) {
-        
+
+            // STORE LAYER COUNT TO STRUCT
+            std::cout << it.key() << " : " << it.value() << "\n";
+            std::cout << "**** THERE ARE < " << it.value().size() << " > LAYERS !!!!" << std::endl;
+            tlSttrJsn.layerCount = it.value().size();
+
+
             // IN THE LAYER ARRAY...
             // FIRST INITIALIZATION OF LAYERS
             for(int z=0; z < tlSttrJsn.layerCount ; z++) {
@@ -312,10 +315,10 @@ Level* LevelDataLoader::ParseTLSetterJson(const char *jsonFile) {
             // *********
             // FOR DEBUG
             // *********
-            // for(int q=0; q < layerCount ; q++) {
-            //     std::cout << tlSttrJsn.layers[q].name << std::endl;
-            //     std::cout << tlSttrJsn.layers[q].positions << std::endl;
-            // }
+            for(int q=0; q < tlSttrJsn.layerCount ; q++) {
+                std::cout << tlSttrJsn.layers[q].name << std::endl;
+                std::cout << tlSttrJsn.layers[q].positions << std::endl;
+            }
 
         } // IF
 
@@ -331,11 +334,15 @@ Level* LevelDataLoader::ParseTLSetterJson(const char *jsonFile) {
     // create the level object
     Level* pLevel = new Level();
 
+    // **** HERE WE ARE PASSING LEVEL OBJECT'S POINTER TO FUNCTION
+    //      THEN, WE GET THE DATA WE WANT                          ****
+
     // PARSING TILESET
     parseTilesetsJson( tlSttrJsn,  pLevel->GetTilesets() );
 
     // PARSING TILED-LAYER OBJECT
     parseTileLayerJson( tlSttrJsn, pLevel->GetLayers(), pLevel->GetTilesets() ); 
+
 
     return pLevel;
 
@@ -401,6 +408,8 @@ void LevelDataLoader::parseTileLayerJson(
     std::vector<Layer*> *pLayers, 
     const std::vector<Tileset>* pTilesets) {
 
+    std::cout << "**** LAYER COUNT IS  -->  " << jsonObj.layerCount <<  "  !!!!"   << std::endl;
+
     // FOR EVERY LAYERS IN THE JSON FILE...
     for(int q=0; q < jsonObj.layerCount ; q++) {
 
@@ -409,7 +418,7 @@ void LevelDataLoader::parseTileLayerJson(
         std::cout << jsonObj.layers[q].positions << std::endl;
 
 
-        LayerTile* pTileLayer = new LayerTile(jsonObj.tile_size, *pTilesets, jsonObj.map_width,  jsonObj.map_height);
+        LayerTile* pLayerTiled = new LayerTile(jsonObj.tile_size, *pTilesets, jsonObj.map_width,  jsonObj.map_height);
 
 
         // CONTAINER FOR 'LAYER-TILED' DATA
@@ -450,15 +459,6 @@ void LevelDataLoader::parseTileLayerJson(
         std::cout << jsonObj.layers[q].positions.size() << std::endl;
 
 
-
-        //for( auto& td : file["b"] ) 
-        // int totalTileCount = jsonObj.map_width * jsonObj.map_height;
-
-        // for(int t=0; t < totalTileCount; t++) {
-
-        // }
-
-
         // FILLING MATRIX WITH DATA
         int counter = 0;
 
@@ -478,13 +478,14 @@ void LevelDataLoader::parseTileLayerJson(
 
 
         // TRANSFER TILE ID DATA TO LAYER-TILED
-        pTileLayer->SetTileIDs(data);
+        pLayerTiled->SetTileIDs(data);
+        pLayerTiled->SetTileSize(jsonObj.tile_size);
+        
+        pLayers->push_back(pLayerTiled);
 
-        pLayers->push_back(pTileLayer);
 
-
-        //std::cout << "pTileLayer is ...   " << pTileLayer << std::endl;
-        //std::cout << "pLayers is ...      " << pLayers << std::endl;
+        std::cout << "pLayerTiled is ...   " << pLayerTiled << std::endl;
+        std::cout << "pLayers is ...      " << pLayers << std::endl;
 
     }
 

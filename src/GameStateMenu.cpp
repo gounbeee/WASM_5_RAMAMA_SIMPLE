@@ -198,8 +198,8 @@ void GameStateMenu::s_aboutBtn(){
 
 
 
-    LevelDataLoader levelDataLoader;
-    m_pLevel = levelDataLoader.ParseTLSetterJson("resources/map01_json.json");			// PATH IS IMPORTANT !    TODO :: COLLECT TO ONE PLACE ?
+    //LevelDataLoader levelDataLoader;
+    //m_pLevel = levelDataLoader.ParseTLSetterJson("resources/map01_json.json");			// PATH IS IMPORTANT !    TODO :: COLLECT TO ONE PLACE ?
 
 
 

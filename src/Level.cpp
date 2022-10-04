@@ -8,21 +8,27 @@ extern "C" {
 
 
 
-Level::Level()
-{
+Level::Level() {
+
 }
 
-Level::~Level()
-{
+
+
+Level::~Level() {
+
+
     std::cout << "~Level() CALLED" << std::endl;
 
-    for(int i = 0; i < m_layers.size(); i++)
-    {
+    for(int i = 0; i < m_layers.size(); i++) {
+
         delete m_layers[i];
+
     }
 
     m_layers.clear();
+
 }
+
 
 
 void Level::Update() {
@@ -36,7 +42,7 @@ void Level::Update() {
 
 void Level::Render() {
 
-    //std::cout << "  - IN Level.cpp:30 ===  m_layers.size() IS ----   " << m_layers.size() << std::endl;
+    std::cout << "  m_layers.size() IS ----   " << m_layers.size() << std::endl;
 
     for(int i = 0; i < m_layers.size(); i++) {
 

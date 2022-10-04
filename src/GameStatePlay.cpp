@@ -38,7 +38,28 @@ bool GameStatePlay::OnEnter() {                                                 
 	m_tileNumColumns = levelDataLoader.GetTileNumColumns();
 	m_tileNumRows = levelDataLoader.GetTileNumRows();
 	m_tileSize = levelDataLoader.GetTileSize();
-    std::cout << "pLevel is ...   " << m_pLevel << std::endl;
+    
+
+
+    std::vector<Layer*>* layerPnt = m_pLevel->GetLayers();
+
+
+    std::vector<Layer*> lyList = *layerPnt;
+    std::cout << lyList.size() << std::endl;
+
+
+	lyList[0]->SetVelocity( Vector2D(10.0f, 0.0f) );
+
+
+
+	// std::cout << "m_pLevel is ...      " << m_pLevel << std::endl;
+	// std::cout << "layerPnt is ...      " << layerPnt << std::endl;
+
+
+
+
+
+
 
 
 	// PREPARING TEXTURES
