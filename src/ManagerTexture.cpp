@@ -92,7 +92,7 @@ void ManagerTexture::RenderFrame(	std::string id,
 
 //Instance_GameSDL::Instance()->GetCamera()
 // RENDERING TILED LAYER WITH ANIMATION
-// *** NOTE THAT THIS FUNCTION EXCUTES IN THE FOR LOOP IN LayerTile OBEJECT ***
+// *** NOTE THAT THIS FUNCTION EXCUTES IN THE FOR LOOP IN LayerTile OBJECT ***
 void ManagerTexture::RenderTile(	std::string id, 
 									int margin, 
 									int spacing, 

@@ -62,9 +62,10 @@ void LayerTile::Render() {
     x2 = int(m_position.getX()) % m_tileSize;
     y2 = int(m_position.getY()) % m_tileSize;
 
-    //std::cout << "m_position.getX()  ---     " << m_position.getX() << std::endl;
-    //std::cout << "x                  ---     " << x                 << std::endl;
-    //std::cout << "x2                 ---     " << x2                << std::endl;
+
+    // std::cout << "m_position.getX()  ---     " << m_position.getX() << std::endl;
+    // std::cout << "x                  ---     " << x                 << std::endl;
+    // std::cout << "x2                 ---     " << x2                << std::endl;
 
 
     // FILLING MAP AREA
@@ -87,6 +88,8 @@ void LayerTile::Render() {
                                                     0,                                      // SPACING
                                                     (j * m_tileSize) - x2,                  // HORIZONTAL STARTING POSITION ON THE SOURCE TEXTURE
                                                     (i * m_tileSize) - y2,                  // VERTICAL   STARTING POSITION ON THE SOURCE TEXTURE
+                                                    //(j * m_tileSize)+m_position.getX(),                  // HORIZONTAL STARTING POSITION ON THE SOURCE TEXTURE
+                                                    //(i * m_tileSize)+m_position.getY(),                  // VERTICAL   STARTING POSITION ON THE SOURCE TEXTURE
                                                     m_tileSize,                                             // WIDTH OF FOCUSED AREA IN TEXTURE SPACE
                                                     m_tileSize,                                             // HEIGHT OF FOCUSED AREA IN TEXTURE SPACE
 

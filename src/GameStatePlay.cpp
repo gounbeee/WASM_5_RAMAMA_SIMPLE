@@ -42,13 +42,11 @@ bool GameStatePlay::OnEnter() {                                                 
 
 
     std::vector<Layer*>* layerPnt = m_pLevel->GetLayers();
-
-
     std::vector<Layer*> lyList = *layerPnt;
-    std::cout << lyList.size() << std::endl;
+    //std::cout << lyList.size() << std::endl;
 
 
-	lyList[0]->SetVelocity( Vector2D(10.0f, 0.0f) );
+	//lyList[0]->SetVelocity( Vector2D{ 100.0f, 100.0f } );
 
 
 
@@ -104,6 +102,14 @@ void GameStatePlay::GetObjectInfo( MultiVectorStr4& xmlData ) {
 
 
 void GameStatePlay::Update() {
+
+
+	// RENDERING LEVEL WITH CAMERA
+	if( m_pLevel != 0 ) {
+		m_pLevel->Update();
+	}
+
+
 
 	// UPDATE ENTITIES
 	Instance_ManagerEntity::Instance()->Update();
