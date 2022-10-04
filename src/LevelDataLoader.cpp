@@ -322,12 +322,19 @@ Level* LevelDataLoader::ParseTLSetterJson(const char *jsonFile) {
     } // FOR
 
 
-    // // create the level object
+    // STORING TILESET INFORMATION TO MEMBER VARIABLES
+    m_width = tlSttrJsn.map_width;
+    m_height = tlSttrJsn.map_height;
+    m_tileSize = tlSttrJsn.tile_size;
+
+
+    // create the level object
     Level* pLevel = new Level();
 
+    // PARSING TILESET
     parseTilesetsJson( tlSttrJsn,  pLevel->GetTilesets() );
 
-
+    // PARSING TILED-LAYER OBJECT
     parseTileLayerJson( tlSttrJsn, pLevel->GetLayers(), pLevel->GetTilesets() ); 
 
     return pLevel;
@@ -494,7 +501,7 @@ void LevelDataLoader::parseTileLayerJson(
 
 // < LOADING TMX FILE AND PARSE >
 // TMX FILE IS FROM 'TILED' EDITOR
-Level* LevelDataLoader::ParseLevel(const char *levelFile) {
+Level* LevelDataLoader::ParseTLDTmx(const char *levelFile) {
 
     // create a TinyXML document and load the map XML
     TiXmlDocument levelDocument;
@@ -518,7 +525,7 @@ Level* LevelDataLoader::ParseLevel(const char *levelFile) {
     //
     for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) {
         if(e->Value() == std::string("tileset")) {
-            parseTilesets(e, pLevel->GetTilesets());												// SETTING UP TILESET
+            parseTilesetsTmx(e, pLevel->GetTilesets());												// SETTING UP TILESET
         }
     }
 
@@ -526,7 +533,7 @@ Level* LevelDataLoader::ParseLevel(const char *levelFile) {
     // NOW, WE ARE SEARCHING layer ELEMENT
     for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement()) {
         if(e->Value() == std::string("layer")) {
-            parseTileLayer(e, pLevel->GetLayers(), pLevel->GetTilesets());							// SETTING UP TILE LAYER
+            parseTileLayerTmx(e, pLevel->GetLayers(), pLevel->GetTilesets());							// SETTING UP TILE LAYER
         }
     }
 
@@ -536,7 +543,7 @@ Level* LevelDataLoader::ParseLevel(const char *levelFile) {
 
 
 
-void LevelDataLoader::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets) {
+void LevelDataLoader::parseTilesetsTmx(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets) {
 
     //std::string filaName = pTilesetRoot->FirstChildElement()->Attribute("source");
 
@@ -567,7 +574,7 @@ void LevelDataLoader::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tile
 // TMX FILE CONTAINS data ELEMENT, WHICH IS ENCRYPTED WITH BASE64 + COMPRESSED WITH ZLIB
 // SO WE NEED TO SEARCH AND GET THE STRING DATA FROM THE ELEMENT,
 // THEN DE-COMPRESS -> STORE THE INTEGER DATA
-void LevelDataLoader::parseTileLayer(TiXmlElement* pTileElement, 
+void LevelDataLoader::parseTileLayerTmx(TiXmlElement* pTileElement, 
     std::vector<Layer*> *pLayers, 
     const std::vector<Tileset>* pTilesets) {
 

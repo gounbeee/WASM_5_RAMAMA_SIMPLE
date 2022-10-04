@@ -73,7 +73,7 @@ struct TlSttrJsn_t {
 class LevelDataLoader {
 
 public:
-    Level* ParseLevel(const char* levelFile);
+    Level* ParseTLDTmx(const char* levelFile);
 	
 	int GetTileNumColumns() const { return m_width; }
 	int GetTileNumRows() const { return m_height; }
@@ -82,20 +82,20 @@ public:
 
 private:
 
-    void parseTilesets( TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
-    void parseTileLayer( TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, const std::vector<Tileset>* pTilesets);
+    void parseTilesetsTmx( TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
+    void parseTileLayerTmx( TiXmlElement* pTileElement, std::vector<Layer*>* pLayers, const std::vector<Tileset>* pTilesets);
+
+    void parseTilesetsJson( TlSttrJsn_t jsonObj, std::vector<Tileset>* pTilesets);
+    void parseTileLayerJson( TlSttrJsn_t jsonObj, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets);
+
     std::string readFileIntoString3(std::string& path);
     std::string getJsonTilesData(nJson::iterator iter, int layerInd);
     SDL_Point getsize(SDL_Texture *texture);
 
-    void parseTilesetsJson( TlSttrJsn_t jsonObj, std::vector<Tileset>* pTilesets);
-    void parseTileLayerJson(TlSttrJsn_t jsonObj, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets);
-
-
-
     int m_tileSize;
     int m_width;
     int m_height;
+
 
 };
 

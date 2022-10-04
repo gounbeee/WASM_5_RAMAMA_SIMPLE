@@ -33,7 +33,7 @@ bool GameStatePlay::OnEnter() {                                                 
 
 	// PREPARING LEVEL
     LevelDataLoader levelDataLoader;
-    m_pLevel = levelDataLoader.ParseLevel("resources/texture_map_01.tmx");			// PATH IS IMPORTANT !    TODO :: COLLECT TO ONE PLACE ?
+    m_pLevel = levelDataLoader.ParseTLSetterJson("resources/map01_json.json");			// PATH IS IMPORTANT !    TODO :: COLLECT TO ONE PLACE ?
 
 	m_tileNumColumns = levelDataLoader.GetTileNumColumns();
 	m_tileNumRows = levelDataLoader.GetTileNumRows();
