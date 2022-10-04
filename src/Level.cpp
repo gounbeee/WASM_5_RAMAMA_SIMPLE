@@ -42,7 +42,7 @@ void Level::Update() {
 
 void Level::Render() {
 
-    std::cout << "  m_layers.size() IS ----   " << m_layers.size() << std::endl;
+    //std::cout << "  m_layers.size() IS ----   " << m_layers.size() << std::endl;
 
     for(int i = 0; i < m_layers.size(); i++) {
 

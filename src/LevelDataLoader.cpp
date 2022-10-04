@@ -315,10 +315,10 @@ Level* LevelDataLoader::ParseTLSetterJson(const char *jsonFile) {
             // *********
             // FOR DEBUG
             // *********
-            for(int q=0; q < tlSttrJsn.layerCount ; q++) {
-                std::cout << tlSttrJsn.layers[q].name << std::endl;
-                std::cout << tlSttrJsn.layers[q].positions << std::endl;
-            }
+            // for(int q=0; q < tlSttrJsn.layerCount ; q++) {
+            //     std::cout << tlSttrJsn.layers[q].name << std::endl;
+            //     std::cout << tlSttrJsn.layers[q].positions << std::endl;
+            // }
 
         } // IF
 
@@ -413,9 +413,9 @@ void LevelDataLoader::parseTileLayerJson(
     // FOR EVERY LAYERS IN THE JSON FILE...
     for(int q=0; q < jsonObj.layerCount ; q++) {
 
-        std::cout << jsonObj.layers[q].index     << std::endl;
-        std::cout << jsonObj.layers[q].name      << std::endl;
-        std::cout << jsonObj.layers[q].positions << std::endl;
+        //std::cout << jsonObj.layers[q].index     << std::endl;
+        //std::cout << jsonObj.layers[q].name      << std::endl;
+        //std::cout << jsonObj.layers[q].positions << std::endl;
 
 
         LayerTile* pLayerTiled = new LayerTile(jsonObj.tile_size, *pTilesets, jsonObj.map_width,  jsonObj.map_height);
@@ -456,25 +456,28 @@ void LevelDataLoader::parseTileLayerJson(
         // --------------------------------------------
         // PREPARING JSON-ARRAY FOR 1 TILED-LAYER
 
-        std::cout << jsonObj.layers[q].positions.size() << std::endl;
+        //std::cout << jsonObj.layers[q].positions.size() << std::endl;
 
 
         // FILLING MATRIX WITH DATA
-        int counter = 0;
+        //int counter = 0;
 
-        for(int cols = 0; cols < jsonObj.map_width; cols++) {
-            for(int rows = 0; rows < jsonObj.map_height; rows++) {
+        // for(int cols = 0; cols < jsonObj.map_width; cols++) {
+        //     for(int rows = 0; rows < jsonObj.map_height; rows++) {
+        for(int cnt = 0; cnt < jsonObj.layers[q].positions.size(); cnt++) {
         
-                //std::cout << jsonObj.layers[q].positions[ counter ]["id"] << std::endl;
 
-                // STORE TILE ID DATA
-                // +1 IS TO CHANGE 1-BASED INDEX !!!!
-                data[rows][cols] = static_cast<int> (jsonObj.layers[q].positions[ counter ]["id"]) + 1;
-               
-                // COUNTER INCREMENTING
-                counter++;
-            }
+            //std::cout << jsonObj.layers[q].positions[ counter ]["id"] << std::endl;
+
+            int xCoord = static_cast<int> (jsonObj.layers[q].positions[ cnt ]["x"]); 
+            int yCoord = static_cast<int> (jsonObj.layers[q].positions[ cnt ]["y"]); 
+            int tileId = static_cast<int> (jsonObj.layers[q].positions[ cnt ]["id"]) + 1;       // +1 IS TO CHANGE 1-BASED INDEX !!!!
+
+            // STORE TILE ID DATA
+            data[yCoord][xCoord] = tileId;
+           
         }
+    
 
 
         // TRANSFER TILE ID DATA TO LAYER-TILED
@@ -484,8 +487,8 @@ void LevelDataLoader::parseTileLayerJson(
         pLayers->push_back(pLayerTiled);
 
 
-        std::cout << "pLayerTiled is ...   " << pLayerTiled << std::endl;
-        std::cout << "pLayers is ...      " << pLayers << std::endl;
+        //std::cout << "pLayerTiled is ...   " << pLayerTiled << std::endl;
+        //std::cout << "pLayers is ...      " << pLayers << std::endl;
 
     }
 
@@ -667,7 +670,7 @@ void LevelDataLoader::parseTileLayerTmx(TiXmlElement* pTileElement,
 
             data[rows][cols] = gids[rows * m_width + cols];
 
-            std::cout << data[rows][cols] << std::endl;
+            //std::cout << data[rows][cols] << std::endl;
 
         }
     }
