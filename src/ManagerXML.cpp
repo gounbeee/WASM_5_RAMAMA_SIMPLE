@@ -15,7 +15,7 @@ ManagerXML::ManagerXML() {
 
 }
 
-void ManagerXML::ParseXML( const char* stateFile , vector<vector<vector<vector<string> > > >& result ) {
+void ManagerXML::ParseXML( const char* stateFile , MultiVectorStr4& result ) {
 										//        states /ElemTypes /Elements         /Attributes (Multiple)
 										// i.e   <MENU>  <TEXTURES>  <texture> 1,2...  filename, ID, type.....
 	// Create the XML ducument
@@ -39,7 +39,8 @@ void ManagerXML::ParseXML( const char* stateFile , vector<vector<vector<vector<s
 	// TODO :: FIX BELOW'S CODE-DUPLICATION
     // Getting This State Root Node And Assign It To pStateRoot
 	// SO, FOR EVERY STATE TYPE
-	vector<vector<vector<vector<string> > > > stateTypeArray;
+	MultiVectorStr4 stateTypeArray;
+	
     for( TiXmlElement* state = pRoot->FirstChildElement(); state != NULL; state = state->NextSiblingElement() ){    // pRoot->FirstChildElement() WILL BE "<MENU>" ELEMENT IN THE FILE
 
 
@@ -136,7 +137,6 @@ void ManagerXML::ParseXML( const char* stateFile , vector<vector<vector<vector<s
 
 
 
-//void ManagerXML::parseTextures( TiXmlElement* pElemType, std::vector<std::string>& pAttributes ) {
 MultiVectorStr2 ManagerXML::parseTextures( TiXmlElement* pElemType ) {
 	
 	MultiVectorStr2 textureAttribs;
@@ -156,7 +156,6 @@ MultiVectorStr2 ManagerXML::parseTextures( TiXmlElement* pElemType ) {
 }
 
 
-//std::vector<std::string> ManagerXML::parseObjects( TiXmlElement* pElemType, std::vector<std::string>& pAttributes    ) {
 MultiVectorStr2 ManagerXML::parseObjects( TiXmlElement* pElemType ) {
 	
 	MultiVectorStr2 objectStringAttribs;

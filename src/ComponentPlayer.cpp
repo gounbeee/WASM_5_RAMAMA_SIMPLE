@@ -106,15 +106,18 @@ void ComponentPlayer::Update() {
 
 void ComponentPlayer::Render() {
 	
-	m_textureManager->RenderFrame(	m_texID, 
+	m_textureManager->RenderFrame(	
+								m_texID, 
 								m_transComponent->GetPosition().getX() - (int) Instance_GameSDL::Instance()->GetCamera()->x , 
 								m_transComponent->GetPosition().getY() - (int) Instance_GameSDL::Instance()->GetCamera()->y, 
 								m_transComponent->GetWidth(), 
 								m_transComponent->GetHeight(), 
-								1,
-								7,
+								0,
+								6,
 								m_currentFrame,
-								Instance_GameSDL::Instance()->GetRenderer() , SDL_FLIP_NONE );
+								GLOBAL_SCALE_2,
+								Instance_GameSDL::Instance()->GetRenderer() , 
+								SDL_FLIP_NONE );
 
 }
 

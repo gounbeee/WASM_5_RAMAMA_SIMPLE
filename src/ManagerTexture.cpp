@@ -71,27 +71,43 @@ void ManagerTexture::RenderFrame(	std::string id,
 									int currentColumn, 
 									int currentRow,  
 									int currentFrame, 
+                                    int scale,
 									SDL_Renderer* pRenderer, 
 									SDL_RendererFlip flip ){
+
+
     SDL_Rect srcRect;                                                                           // SOURCE AREA ON THE TEXTURE
     SDL_Rect destRect;                                                                          // DESTNINATION ON THE SCREEN
 
-    srcRect.x = (currentColumn - 1) * width + width * currentFrame;                             // STARTING POINT X OF SOURCE TEXTURE
+    srcRect.x = currentColumn * width + currentFrame * width;                             // STARTING POINT X OF SOURCE TEXTURE
                                                                                                 // width * currentFrame IS THE "CURSOR" TO ANIMATE
-    srcRect.y = height * (currentRow -1);                                                       // STARTING POINT Y OF SOURCE TEXTURE
+    srcRect.y = currentRow * height;                                                       // STARTING POINT Y OF SOURCE TEXTURE
 
     srcRect.w = width;                                                             // WE DON'T WANT TO BE SCALED SO RECTANGLE AREA OF TEXTURE SHOULD BE SAME
     srcRect.h = height;                                                            // WE DON'T WANT TO BE SCALED SO RECTANGLE AREA OF TEXTURE SHOULD BE SAME
 
-    destRect.w = width;  
-    destRect.h = height; 
+    destRect.w = width * scale;  
+    destRect.h = height * scale; 
 
-    destRect.x = x;                                                                             // DESTINATION AREA POSITION X OF THE SCREEN
-    destRect.y = y;                                                                             // DESTINATION AREA POSITION Y OF THE SCREEN
+    destRect.x = x * scale;                                                                             // DESTINATION AREA POSITION X OF THE SCREEN
+    destRect.y = y * scale;                                                                             // DESTINATION AREA POSITION Y OF THE SCREEN
+
+
+    // std::cout << "scale  ->   " << scale << std::endl;
+    // std::cout << "srcRect.x  ->   " << srcRect.x << std::endl;
+    // std::cout << "srcRect.y  ->   " << srcRect.y << std::endl;
+    // std::cout << "srcRect.w  ->   " << srcRect.w << std::endl;
+    // std::cout << "srcRect.h  ->   " << srcRect.h << std::endl;
+    // std::cout << "destRect.x  ->   " << destRect.x << std::endl;
+    // std::cout << "destRect.y  ->   " << destRect.y << std::endl;
+    // std::cout << "destRect.w  ->   " << destRect.w << std::endl;
+    // std::cout << "destRect.h  ->   " << destRect.h << std::endl;
+
 
     SDL_RenderCopyEx( pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip );
 
 }
+
 
 //Instance_GameSDL::Instance()->GetCamera()
 // RENDERING TILED LAYER WITH ANIMATION
@@ -103,6 +119,7 @@ void ManagerTexture::RenderTile(	std::string id,
 									int y, 
 									int width, 
 									int height, 
+                                    int scale,
 									int currentRow, 
 									int currentFrame, 
 									SDL_Renderer *pRenderer) {
@@ -115,15 +132,15 @@ void ManagerTexture::RenderTile(	std::string id,
     srcRect.w = width;
     srcRect.h = height;    
 
-    destRect.w = width * 3;
-    destRect.h = height * 3;
+    destRect.w = width * scale;
+    destRect.h = height * scale;
 
 
 	//destRect.x = x  - (int) Instance_GameSDL::Instance()->GetCamera()->x;
     //destRect.y = y - (int) Instance_GameSDL::Instance()->GetCamera()->y;
    
-    destRect.x = x * 3 - (int) Instance_GameSDL::Instance()->GetCamera()->x;
-    destRect.y = y * 3 - (int) Instance_GameSDL::Instance()->GetCamera()->y;
+    destRect.x = x * scale - (int) Instance_GameSDL::Instance()->GetCamera()->x;
+    destRect.y = y * scale - (int) Instance_GameSDL::Instance()->GetCamera()->y;
 
     //destRect.x = x * 2;
     //destRect.y = y * 2; 

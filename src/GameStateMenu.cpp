@@ -75,15 +75,21 @@ bool GameStateMenu::OnEnter() {
 	std::string id_a = m_objectInfo[0][TEXTUREID];
 	
 
-	// CHANGING SIZE OF STRING
+	// < CHANGING SIZE OF STRING >
 	// http://www.cplusplus.com/reference/string/string/resize/
 	//unsigned int size_id_a = id_a.size();
 	//id_a.resize( size_id_a+1, '\0');
 	Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity( id_a.data() ));
-	but_a.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[0][XPOS] ) , std::stoi( m_objectInfo[0][YPOS] ) , std::stoi( m_objectInfo[0][VELOX] ), std::stoi( m_objectInfo[0][VELOY] ), std::stoi( m_objectInfo[0][WIDTH] ), std::stoi( m_objectInfo[0][HEIGHT] ), std::stoi( m_objectInfo[0][SCALE] ) );
+	but_a.AddComponent<ComponentTransform>( 
+		std::stoi( m_objectInfo[0][XPOS] ) , 
+		std::stoi( m_objectInfo[0][YPOS] ) , 
+		std::stoi( m_objectInfo[0][VELOX] ), 
+		std::stoi( m_objectInfo[0][VELOY] ), 
+		std::stoi( m_objectInfo[0][WIDTH] ), 
+		std::stoi( m_objectInfo[0][HEIGHT] ), 
+		std::stoi( m_objectInfo[0][SCALE] ) );
 	but_a.AddUIComponent<ComponentUIButton>( GameStateMenu::s_menuToPlay , id_a.data() );
 	
-
 
 	std::string id_b = m_objectInfo[1][TEXTUREID];
 	//unsigned int size_id_b = id_b.size();
@@ -91,9 +97,6 @@ bool GameStateMenu::OnEnter() {
 	Entity& but_b( Instance_ManagerEntity::Instance()->AddEntity( id_b.data() ));
 	but_b.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[1][XPOS] ) , std::stoi( m_objectInfo[1][YPOS] ) , std::stoi( m_objectInfo[1][VELOX] ), std::stoi( m_objectInfo[1][VELOY] ), std::stoi( m_objectInfo[1][WIDTH] ), std::stoi( m_objectInfo[1][HEIGHT] ), std::stoi( m_objectInfo[1][SCALE] ) );
 	but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_aboutBtn , id_b.data() );
-
-
-
 
 
 	

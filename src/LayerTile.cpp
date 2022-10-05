@@ -96,6 +96,7 @@ void LayerTile::Render() {
 
                                                                                                             // BECAUSE TILE ID IS 'CONTINUOUS' VALUE,
                                                                                                             // SO,
+                                                    GLOBAL_SCALE_4,
                                                     (id - (tileset.firstGridID - 1)) / tileset.numColumns,  // COLUMN INDEX (HORIZONTAL POSITION) ON THE TILESET
                                                     (id - (tileset.firstGridID - 1)) % tileset.numColumns,  // ROW INDEX (VERTICAL POSITION) ON THE TILESET
                                                     Instance_GameSDL::Instance()->GetRenderer());

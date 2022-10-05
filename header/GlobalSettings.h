@@ -1,0 +1,15 @@
+#ifndef INCLUDE_GUARD_GLOBALSETTINGS_H
+#define INCLUDE_GUARD_GLOBALSETTINGS_H
+
+
+
+extern int GLOBAL_SCALE_2;
+extern int GLOBAL_SCALE_3;
+extern int GLOBAL_SCALE_4;
+
+
+
+
+
+
+#endif

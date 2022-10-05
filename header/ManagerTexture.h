@@ -7,6 +7,8 @@
 #include <SDL_image.h>
 #include <iostream>
 
+#include "GlobalSettings.h"
+
 
 class ManagerTexture {
 
@@ -32,7 +34,18 @@ public:
 
 
     // DRAW FUNCTION 2 : drawFrame()
-    void RenderFrame( std::string id, int x, int y, int width, int height, int currentColumn, int currentRow,  int currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE );
+    void RenderFrame( 
+        std::string id, 
+        int x, 
+        int y, 
+        int width, 
+        int height, 
+        int currentColumn, 
+        int currentRow,  
+        int currentFrame, 
+        int scale,
+        SDL_Renderer* pRenderer, 
+        SDL_RendererFlip flip = SDL_FLIP_NONE );
 
 	void RenderTile(  std::string id,
                     int margin,
@@ -41,6 +54,7 @@ public:
                     int y,
                     int width,
                     int height,
+                    int scale,
                     int currentRow,
                     int currentFrame,
                     SDL_Renderer *pRenderer);
@@ -64,6 +78,7 @@ private:
 
 
     static ManagerTexture* s_pInstance;
+
 };
 
 

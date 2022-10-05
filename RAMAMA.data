@@ -8,8 +8,8 @@
         </TEXTURES>
 
         <OBJECTS>
-            <object type="MenuButton" x="200" y="100" velocityX="0" velocityY="0" width="400" height="100" scale="1" textureID="btn_play"/>
-            <object type="MenuButton" x="200" y="300" velocityX="0" velocityY="0" width="400" height="100" scale="1" textureID="btn_about"/>
+            <object type="MenuButton" x="100" y="50" velocityX="0" velocityY="0" width="400" height="100" scale="1" textureID="btn_play"/>
+            <object type="MenuButton" x="100" y="150" velocityX="0" velocityY="0" width="400" height="100" scale="1" textureID="btn_about"/>
         </OBJECTS>
     </MENU>
 
@@ -21,7 +21,7 @@
         </TEXTURES>
 
         <OBJECTS>
-            <object type="Character" x="400" y="225" velocityX="0" velocityY="0" width="32" height="32" scale="1" textureID="char_01" startColumn="1" startRow="1" animFrames="2" animSpeed="2.0"/>
+            <object type="Character" x="400" y="225" velocityX="0" velocityY="0" width="32" height="32" scale="1" textureID="char_01" startColumn="0" startRow="0" animFrames="2" animSpeed="2.0"/>
             <object type="MenuButton" x="0" y="0" velocityX="0" velocityY="0" width="200" height="100" scale="1" textureID="btn_mainmenu"/>
         </OBJECTS>
     </PLAY>

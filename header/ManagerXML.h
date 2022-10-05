@@ -30,7 +30,7 @@ public:
 
     ManagerXML();
 
-    void ParseXML( const char* stateFile , vector<vector<vector<vector<string > > > >& result );
+    void ParseXML( const char* stateFile , MultiVectorStr4& result );
 
 	MultiVectorStr4 GetXmlOutput() const { return m_pXmlData; }
 

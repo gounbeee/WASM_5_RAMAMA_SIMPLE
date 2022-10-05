@@ -5,6 +5,8 @@
 #include <iostream>
 
 
+
+#include "GlobalSettings.h"
 #include "GlobalTypes.h"
 // #include "GlobalFunctions.h"
 #include "GlobalMath.h"
@@ -15,6 +17,10 @@
 #include "GameStateMenu.h"
 #include "GameStatePause.h"
 #include "GameStatePlay.h"
+
+
+
+
 
 
 class GameStateMachine;
