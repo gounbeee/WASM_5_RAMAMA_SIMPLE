@@ -17,7 +17,7 @@ class ManagerTexture;
 class ComponentPlayer : public Component {
 
 public:
-	ComponentPlayer( std::string textureID, int animFrames, float animSpeed );
+	ComponentPlayer( std::string textureID, int animFrames, float animSpeed, int startCol, int startRow );
 	~ComponentPlayer();
 
 	void Initialize();
@@ -51,6 +51,9 @@ private:
 	float m_animSpeed;
 
 	unsigned int m_lastTime, m_newTime;
+
+	int m_startCol;
+	int m_startRow;
 
 };
 

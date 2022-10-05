@@ -21,8 +21,9 @@
         </TEXTURES>
 
         <OBJECTS>
-            <object type="Character" x="400" y="225" velocityX="0" velocityY="0" width="32" height="32" scale="1" textureID="char_01" startColumn="0" startRow="0" animFrames="2" animSpeed="2.0"/>
+            <object type="Character" x="400" y="225" velocityX="0" velocityY="0" width="32" height="32" scale="1" textureID="char_01" startColumn="0" startRow="6" animFrames="2" animSpeed="2.0"/>
             <object type="MenuButton" x="0" y="0" velocityX="0" velocityY="0" width="200" height="100" scale="1" textureID="btn_mainmenu"/>
+            <object type="Char_02" x="300" y="200" velocityX="0" velocityY="0" width="32" height="32" scale="1" textureID="char_01" startColumn="0" startRow="9" animFrames="2" animSpeed="2.0"/>
         </OBJECTS>
     </PLAY>
 

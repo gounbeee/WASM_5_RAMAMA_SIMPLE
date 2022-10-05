@@ -9,7 +9,7 @@ extern "C" {
 
 
 
-ComponentPlayer::ComponentPlayer( std::string textureID, int animFrames, float animSpeed ):  
+ComponentPlayer::ComponentPlayer( std::string textureID, int animFrames, float animSpeed, int startCol, int startRow ):  
 															m_transComponent(0), 
 															m_keybrdComponent(0), 
 															m_texID(textureID), 
@@ -17,7 +17,9 @@ ComponentPlayer::ComponentPlayer( std::string textureID, int animFrames, float a
 															m_animFrames(animFrames), 
 															m_animSpeed(animSpeed),
 															m_lastTime(0),
-															m_newTime(0) {
+															m_newTime(0),
+															m_startCol(startCol),
+															m_startRow(startRow) {
 	std::cout << "ComponentPlayer::ComponentPlayer() -- CONSTRUCTOR CALLED" << std::endl;
 }
 
@@ -112,8 +114,8 @@ void ComponentPlayer::Render() {
 								m_transComponent->GetPosition().getY() - (int) Instance_GameSDL::Instance()->GetCamera()->y, 
 								m_transComponent->GetWidth(), 
 								m_transComponent->GetHeight(), 
-								0,
-								6,
+								m_startCol,
+								m_startRow,
 								m_currentFrame,
 								GLOBAL_SCALE_2,
 								Instance_GameSDL::Instance()->GetRenderer() , 

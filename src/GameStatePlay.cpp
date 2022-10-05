@@ -64,12 +64,28 @@ bool GameStatePlay::OnEnter() {                                                 
 	Entity& player( Instance_ManagerEntity::Instance()->AddEntity( id_player.data() ));
 	player.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[0][XPOS] ) , std::stoi( m_objectInfo[0][YPOS] ) , std::stoi( m_objectInfo[0][VELOX] ), std::stoi( m_objectInfo[0][VELOY] ), std::stoi( m_objectInfo[0][WIDTH] ), std::stoi( m_objectInfo[0][HEIGHT] ), std::stoi( m_objectInfo[0][SCALE] ) );
 	player.AddComponent<ComponentInputKeyboard>( SDL_SCANCODE_UP, SDL_SCANCODE_RIGHT, SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT, SDL_SCANCODE_SPACE );
-	player.AddComponent<ComponentPlayer>( id_player.data() , std::stoi( m_objectInfo[0][ANIMFRAMES]) , std::stoi( m_objectInfo[0][ANIMSPEED] ) );
+	player.AddComponent<ComponentPlayer>( 
+		id_player.data() , 
+		std::stoi( m_objectInfo[0][ANIMFRAMES]) , 
+		std::stoi( m_objectInfo[0][ANIMSPEED] ),
+		std::stoi( m_objectInfo[0][STARTCOL] ),
+		std::stoi( m_objectInfo[0][STARTROW] ) );
 
 	std::string id_btn_mainmenu = m_objectInfo[1][TEXTUREID];
 	Entity& btn_mainmenu( Instance_ManagerEntity::Instance()->AddEntity( id_btn_mainmenu.data() ));
 	btn_mainmenu.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[1][XPOS] ) , std::stoi( m_objectInfo[1][YPOS] ) , std::stoi( m_objectInfo[1][VELOX] ), std::stoi( m_objectInfo[1][VELOY] ), std::stoi( m_objectInfo[1][WIDTH] ), std::stoi( m_objectInfo[1][HEIGHT] ), std::stoi( m_objectInfo[1][SCALE] ) );
 	btn_mainmenu.AddUIComponent<ComponentUIButton>( GameStatePlay::s_exitToMenu , id_btn_mainmenu.data() );
+
+	std::string char_02_Id = m_objectInfo[2][TEXTUREID];
+	Entity& char_02( Instance_ManagerEntity::Instance()->AddEntity( char_02_Id.data() ));
+	char_02.AddComponent<ComponentTransform>( std::stoi( m_objectInfo[2][XPOS] ) , std::stoi( m_objectInfo[2][YPOS] ) , std::stoi( m_objectInfo[2][VELOX] ), std::stoi( m_objectInfo[2][VELOY] ), std::stoi( m_objectInfo[2][WIDTH] ), std::stoi( m_objectInfo[2][HEIGHT] ), std::stoi( m_objectInfo[2][SCALE] ) );
+	//char_02.AddComponent<ComponentInputKeyboard>( SDL_SCANCODE_UP, SDL_SCANCODE_RIGHT, SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT, SDL_SCANCODE_SPACE );
+	char_02.AddComponent<ComponentPlayer>( 
+		char_02_Id.data() , 
+		std::stoi( m_objectInfo[2][ANIMFRAMES]) , 
+		std::stoi( m_objectInfo[2][ANIMSPEED] ) ,
+		std::stoi( m_objectInfo[2][STARTCOL] ),
+		std::stoi( m_objectInfo[2][STARTROW] ) );
 
 
     std::cout << "GameStatePlay::OnEnter() -- ENTERING PLAY GAMESTATE" << std::endl;
@@ -102,22 +118,12 @@ void GameStatePlay::Update() {
 	}
 
 
-
-
-
-
-
 	// BG ANIMTION
+ 	// std::vector<Layer*>* layerPnt = m_pLevel->GetLayers();
+ 	// std::vector<Layer*> lyList = *layerPnt;
 
-    std::vector<Layer*>* layerPnt = m_pLevel->GetLayers();
-    std::vector<Layer*> lyList = *layerPnt;
-
-	lyList[0]->SetVelocity( Vector2D{ -0.5f, 0.0f } );
-	lyList[1]->SetVelocity( Vector2D{ -0.7f, 0.0f } );
-
-
-
-
+	// lyList[0]->SetVelocity( Vector2D{ -0.5f, 0.0f } );
+	// lyList[1]->SetVelocity( Vector2D{ -0.7f, 0.0f } );
 
 
 
@@ -150,10 +156,7 @@ void GameStatePlay::Update() {
 	} else {
 		Instance_GameSDL::Instance()->GetCamera()->y = Instance_GameSDL::Instance()->GetCamera()->y;
 	}
-
 	
-
-
 	// std::cout << "---------- playerPosition Pos X ::::   " << playerPosition.getX() << std::endl;
 	// std::cout << "---------- playerPosition Pos Y ::::   " << playerPosition.getY() << std::endl;
 	
@@ -169,6 +172,20 @@ void GameStatePlay::Update() {
 		m_pLevel->Update();
 	}
 	*/
+
+
+
+
+
+
+
+	// Entity* char_02 = Instance_ManagerEntity::Instance()->GetEntityByName( "char_02" );
+	// ComponentTransform* char_02TransformComponent = char_02->GetComponent<ComponentTransform>();
+
+
+
+
+
 
 
 	//std::cout << Instance_ManagerEntity::Instance()->GetEntityCount() << std::endl;

@@ -35,16 +35,11 @@
 
 
 
-
-
-
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <emscripten.h>
 #include <GameSDL.h>
-
-
 
 
 
@@ -56,7 +51,6 @@ const int GAME_HEIGHT = 600;
 
 const int SCREEN_WIDTH = 1600;
 const int SCREEN_HEIGHT = 1200;
-
 
 
 
@@ -97,7 +91,7 @@ int main() {
 
     // GAME INITIALIZATION
 
-    Instance_GameSDL::Instance()->Initialize(   "RAMAMA ver 0.1" , 
+    Instance_GameSDL::Instance()->Initialize(   "RAMAMA ver 0.2" , 
                                                 SDL_WINDOWPOS_CENTERED, 
                                                 SDL_WINDOWPOS_CENTERED, 
                                                 GAME_WIDTH, 

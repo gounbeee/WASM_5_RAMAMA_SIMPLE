@@ -16,7 +16,6 @@ Level::Level() {
 
 Level::~Level() {
 
-
     std::cout << "~Level() CALLED" << std::endl;
 
     for(int i = 0; i < m_layers.size(); i++) {
