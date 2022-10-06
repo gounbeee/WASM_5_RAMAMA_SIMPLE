@@ -7,11 +7,11 @@ extern "C" {
 
 
 
-ManagerXML::ManagerXML() {
+ManagerXML::ManagerXML(const char* xmlFileName) {
 	// FOR DEBUG PURPOSE
     //Dump_to_stdout( "data.xml" );
 
-    ParseXML( "resources/data.xml" , m_pXmlData );
+    ParseXML( xmlFileName, m_pXmlData );
 
 }
 
@@ -135,6 +135,126 @@ void ManagerXML::ParseXML( const char* stateFile , MultiVectorStr4& result ) {
 
 }
 
+
+void ManagerXML::ParseAnimXML( const char* stateFile , MultiVectorStr4& result ) {
+										//        states /ElemTypes /Elements         /Attributes (Multiple)
+										// i.e   <MENU>  <TEXTURES>  <texture> 1,2...  filename, ID, type.....
+	// Create the XML ducument
+    TiXmlDocument xmlDoc;
+
+    // load the state file
+	xmlDoc.LoadFile( stateFile );
+
+	/*
+    if( !xmlDoc.LoadFile( stateFile ) ) {                                       // IF THERE IS AN ERROR WHEN LOADING THE XML FILE
+        std::cerr << xmlDoc.ErrorDesc() << "\n";                                // PRINT THAT
+        return 0;
+    }
+	*/
+
+    // getting the root ELEMENT
+    TiXmlElement* pRoot = xmlDoc.RootElement();                                 // GETTING ROOT ELEMENT
+
+
+
+	// TODO :: FIX BELOW'S CODE-DUPLICATION
+    // Getting This State Root Node And Assign It To pStateRoot
+	// SO, FOR EVERY STATE TYPE
+	MultiVectorStr4 stateTypeArray;
+	
+    for( TiXmlElement* state = pRoot->FirstChildElement(); state != NULL; state = state->NextSiblingElement() ){    // pRoot->FirstChildElement() WILL BE "<MENU>" ELEMENT IN THE FILE
+
+
+		if( state->Value() == std::string("MENU") ) {
+
+			MultiVectorStr3 elemTypeArray;
+			// FOR EVERY ELEMENT TYPE
+			for( TiXmlElement* elemType = state->FirstChildElement(); elemType != NULL; elemType = elemType->NextSiblingElement() ) {     // <TEXTURE> ELEMENT CHECKING
+
+
+				MultiVectorStr2 texAttribs;
+				MultiVectorStr2 objAttribs;
+				// TEXTURE PARSING
+				if( elemType->Value() == std::string("TEXTURES")) {
+					// GETTING TEXTURE ATTRIBUTES
+					texAttribs = parseTextures( elemType );
+					// STORING TO elemTypeArray VECTOR
+					elemTypeArray.push_back( texAttribs );
+				}
+				// OBJECT PARSING
+				if( elemType->Value() == std::string( "OBJECTS" )) {
+					// GETTING OBJECTS ATTRIBUTES
+					objAttribs = parseObjects( elemType );
+					// STORING TO elemTypeArray VECTOR
+					elemTypeArray.push_back( objAttribs );
+				}
+			}
+			stateTypeArray.push_back( elemTypeArray );
+		}
+
+
+		if( state->Value() == std::string("PLAY") ) {
+
+			vector<vector<vector<string> > > elemTypeArray;
+			// FOR EVERY ELEMENT TYPE
+			for( TiXmlElement* elemType = state->FirstChildElement(); elemType != NULL; elemType = elemType->NextSiblingElement() ) {     // <TEXTURE> ELEMENT CHECKING
+
+
+				MultiVectorStr2 texAttribs;
+				MultiVectorStr2 objAttribs;
+
+				// TEXTURE PARSING
+				if( elemType->Value() == std::string("TEXTURES")) {
+					// GETTING TEXTURE ATTRIBUTES
+					texAttribs = parseTextures( elemType );
+					// STORING TO elemTypeArray VECTOR
+					elemTypeArray.push_back( texAttribs );
+				}
+				// OBJECT PARSING
+				if( elemType->Value() == std::string( "OBJECTS" )) {
+					// GETTING OBJECTS ATTRIBUTES
+					objAttribs = parseObjects( elemType );
+					// STORING TO elemTypeArray VECTOR
+					elemTypeArray.push_back( objAttribs );
+				}
+			}
+			stateTypeArray.push_back( elemTypeArray );
+		}
+
+		if( state->Value() == std::string("PAUSE") ) {
+
+			vector<vector<vector<string> > > elemTypeArray;
+			// FOR EVERY ELEMENT TYPE
+			for( TiXmlElement* elemType = state->FirstChildElement(); elemType != NULL; elemType = elemType->NextSiblingElement() ) {     // <TEXTURE> ELEMENT CHECKING
+
+
+				MultiVectorStr2 texAttribs;
+				MultiVectorStr2 objAttribs;
+				
+				// TEXTURE PARSING
+				if( elemType->Value() == std::string("TEXTURES")) {
+					// GETTING TEXTURE ATTRIBUTES
+					texAttribs = parseTextures( elemType );
+					// STORING TO elemTypeArray VECTOR
+					elemTypeArray.push_back( texAttribs );
+				}
+				// OBJECT PARSING
+				if( elemType->Value() == std::string( "OBJECTS" )) {
+					// GETTING OBJECTS ATTRIBUTES
+					objAttribs = parseObjects( elemType );
+					// STORING TO elemTypeArray VECTOR
+					elemTypeArray.push_back( objAttribs );
+				}
+			}
+			stateTypeArray.push_back( elemTypeArray );
+		}
+
+    }
+
+	
+    result = stateTypeArray;
+
+}
 
 
 MultiVectorStr2 ManagerXML::parseTextures( TiXmlElement* pElemType ) {

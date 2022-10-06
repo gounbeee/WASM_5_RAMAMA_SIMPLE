@@ -104,7 +104,7 @@ void GameSDL::Initialize( const char* appName , unsigned int xPos , unsigned int
 
 
 	// INITIALIZE MANAGER-XML
-	ManagerXML managerXML;															// TODO :: ***** MAKE THE ARCHIVE *****
+	ManagerXML* managerXML = new ManagerXML("resources/data.xml");									// TODO :: ***** MAKE THE ARCHIVE *****
 																					// https://people.eecs.ku.edu/~jrmiller/Courses/JavaToC++/StackAllocatedObjects.html
 																					// IN C++, THIS IS A LOCAL VARIABLE AND INITIALIZED 
 																					// WITH NONE-PARAMETER CONTRUCTOR ( ManagerXML::ManagerXML() ),
@@ -113,7 +113,7 @@ void GameSDL::Initialize( const char* appName , unsigned int xPos , unsigned int
 																					// **** BECAUSE THESE ARE DELETING SOON,
 																					//      SO WE NEED TO SEND THE DATA TO THE PROPER LOCATION ****
 	
-	GameSDL::s_xmlData = managerXML.GetXmlOutput();
+	GameSDL::s_xmlData = managerXML->GetXmlOutput();
 
 
 

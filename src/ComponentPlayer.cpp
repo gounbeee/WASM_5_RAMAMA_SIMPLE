@@ -117,7 +117,7 @@ void ComponentPlayer::Render() {
 								m_startCol,
 								m_startRow,
 								m_currentFrame,
-								GLOBAL_SCALE_2,
+								GLOBAL_SCALE_4,
 								Instance_GameSDL::Instance()->GetRenderer() , 
 								SDL_FLIP_NONE );
 

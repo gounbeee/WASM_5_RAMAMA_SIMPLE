@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<STATES>
+
+    <MENU>
+
+        <OBJECTS>
+            <object id="btn_play">
+                <clip name="GO_RIGHT" inTime="0" outTime="1000" />
+                <clip name="GO_LEFT" inTime="1000" outTime="2000" />
+            </object>
+
+            <object id="btn_about">
+
+            </object>
+
+        </OBJECTS>               
+
+
+        <ANIMATIONS>
+            <animation name="GO_RIGHT">
+                <key number="0" timePer="0" velX="1" velY="0" frmNum="0" />
+                <key number="1" timePer="50" velX="2" velY="0" frmNum="1" />
+                <key number="2" timePer="100" velX="3" velY="0" frmNum="2" />
+            </animation>
+
+            <animation name="GO_LEFT">
+                <key number="0" timePer="0" velX="0" velY="1" frmNum="0" />
+                <key number="1" timePer="50" velX="0" velY="2" frmNum="1" />
+                <key number="2" timePer="100" velX="0" velY="3" frmNum="2" />
+            </animation>
+
+        </ANIMATIONS>
+
+
+    </MENU>
+
+
+    <PLAY>
+
+    </PLAY>
+
+
+
+</STATES>

@@ -66,7 +66,7 @@ bool GameStatePlay::OnEnter() {                                                 
 	player.AddComponent<ComponentInputKeyboard>( SDL_SCANCODE_UP, SDL_SCANCODE_RIGHT, SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT, SDL_SCANCODE_SPACE );
 	player.AddComponent<ComponentPlayer>( 
 		id_player.data() , 
-		std::stoi( m_objectInfo[0][ANIMFRAMES]) , 
+		std::stoi( m_objectInfo[0][ANIMFRAMES]), 
 		std::stoi( m_objectInfo[0][ANIMSPEED] ),
 		std::stoi( m_objectInfo[0][STARTCOL] ),
 		std::stoi( m_objectInfo[0][STARTROW] ) );
@@ -82,8 +82,8 @@ bool GameStatePlay::OnEnter() {                                                 
 	//char_02.AddComponent<ComponentInputKeyboard>( SDL_SCANCODE_UP, SDL_SCANCODE_RIGHT, SDL_SCANCODE_DOWN, SDL_SCANCODE_LEFT, SDL_SCANCODE_SPACE );
 	char_02.AddComponent<ComponentPlayer>( 
 		char_02_Id.data() , 
-		std::stoi( m_objectInfo[2][ANIMFRAMES]) , 
-		std::stoi( m_objectInfo[2][ANIMSPEED] ) ,
+		std::stoi( m_objectInfo[2][ANIMFRAMES]), 
+		std::stoi( m_objectInfo[2][ANIMSPEED] ),
 		std::stoi( m_objectInfo[2][STARTCOL] ),
 		std::stoi( m_objectInfo[2][STARTROW] ) );
 

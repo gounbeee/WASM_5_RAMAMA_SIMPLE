@@ -28,9 +28,10 @@ class ManagerXML {
 public:
     static const unsigned int NUM_INDENTS_PER_SPACE=2;
 
-    ManagerXML();
+    ManagerXML(const char* xmlFileName);
 
     void ParseXML( const char* stateFile , MultiVectorStr4& result );
+    void ParseAnimXML( const char* stateFile , MultiVectorStr4& result );
 
 	MultiVectorStr4 GetXmlOutput() const { return m_pXmlData; }
 
