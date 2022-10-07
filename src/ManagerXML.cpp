@@ -326,59 +326,6 @@ MultiVectorStr2 ManagerXML::parseObjects( TiXmlElement* pElemType ) {
 
 
 
-/*
-void XMLManager::parseTextures(TiXmlElement* pStateRoot, std::vector<std::string> *pTextureIDs) {
-    for( TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement() ) {
-
-        std::string filenameAttribute = e->Attribute("filename");                                                           // GETTING 'ATTRIBUTE filename' IN THE XML FILE
-        std::string idAttribute = e->Attribute("ID");                                                                       // GETTING 'ATTRIBUTE ID' IN THE XML FILE
-        pTextureIDs->push_back(idAttribute);                                                                                // push into list
-
-        std::cout << "---- XMLManager::IN PARSING TEXTURES -------    " << idAttribute << "\n";
-
-
-    }
-
-}
-
-
-
-
-
-void XMLManager::parseObjects(TiXmlElement *pStateRoot, std::vector<std::string> *pGameObjectTypes) {
-
-                                                                                                                        // USING "POINTER",
-    for( TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement() ) {                  // FOR EVERY CHILDREN ELEMENTS
-
-        int x, y, width, height, startCol, startRow, numFrames, callbackID, animSpeed;                                                      // FINAL RESULTS WE WNAT TO GET
-        std::string textureID;
-
-        e->Attribute("x", &x);                                                                                          // GETTING ATTRIBUTES
-                                                                                                                        // sets the variable x to the value contained within attribute
-        e->Attribute("y", &y);
-        e->Attribute("width",&width);
-        e->Attribute("height", &height);
-        e->Attribute("startColumn", &startCol);
-        e->Attribute("startRow", &startRow);
-        e->Attribute("numFrames", &numFrames);
-        e->Attribute("callbackID", &callbackID);
-        e->Attribute("animSpeed", &animSpeed);
-        textureID = e->Attribute("textureID");
-
-        //GameObject* pGameObject = TheGameObjectFactory::Instance()->create( e->Attribute("type") );                     // CREATING NEW GAME OBJECT TYPE USING GameObjectFactory CLASS
-                                                                                                                        // FROM "TYPE" ATTRIBUTE IN HTE XML FILE
-
-        //pGameObject->load(new LoaderParams( x, y, width, height, startCol, startRow, textureID, numFrames, callbackID, animSpeed));                // USING LoaderParams OBJECT WE DELIVER THE INFORMATION TO GAMEOBJECT
-
-        //pGameObject->load( std::unique_ptr<LoaderParams>( new LoaderParams( x, y, width, height, startCol, startRow, textureID, numFrames, callbackID, animSpeed ) ) );
-
-        pGameObjectTypes->push_back(textureID);
-        std::cout << "---- XMLManager::IN PARSING OBJECTS -------    " << textureID << "\n";
-    }
-
-}
-*/
-
 
 
 

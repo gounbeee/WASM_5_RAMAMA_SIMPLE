@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "GlobalTypes.h"
+#include "ManagerLayers.h"
 
 
 // THIS CLASS IS AN ABSTRACT CLASSES
@@ -50,6 +51,9 @@ protected:
 
 	MultiVectorStr2 m_textureInfo;
 	MultiVectorStr2 m_objectInfo;
+
+    ManagerLayers* m_managerLayers;
+    
 
 };
 

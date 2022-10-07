@@ -21,8 +21,11 @@ export PATH := $(shell pwd)/$(HEADER_DIRS):$(PATH)
 # WASM APP
 #WASM_FLAGS     := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file assets
 #WASM_FLAGS     := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -O3 --preload-file resources
-WASM_FLAGS     := -s WASM=2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file resources
+WASM_FLAGS     := -s WASM=2 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' --preload-file resources 
 SDL2_INC_FLAGS := -I./$(HEADER_DIRS) -I/opt/homebrew/include/SDL2 -D_THREAD_SAFE
+
+# -s 'EXPORTED_FUNCTIONS=["_main","_makeVec2"]'
+
 
 
 

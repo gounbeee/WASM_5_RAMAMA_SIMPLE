@@ -1,5 +1,8 @@
 #include <GameSDL.h>
 
+
+
+
 // STATIC VARIABLES
 GameSDL* GameSDL::s_pInstance = 0;
 SDL_Rect* GameSDL::s_pCamera = 0;
@@ -8,6 +11,7 @@ MultiVectorStr4 GameSDL::s_xmlData = { { { {} } } } ;
 
 
 extern "C" {
+
 
 
 
@@ -46,6 +50,9 @@ GameSDL::~GameSDL() {
 
 void GameSDL::Initialize( const char* appName , unsigned int xPos , unsigned int yPos , int xGameWidth, int yGameHeight, int xScrWidth , int yScrHeight , int windowFlag   ) {
 	
+
+
+
 
 	// ******* SDL ENGINE INITIALIZING ******* //
 	// STORING WIDTH AND HEIGHT OF GAME

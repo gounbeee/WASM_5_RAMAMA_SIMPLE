@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+#include <emscripten.h>
+
 #include "GameState.h"
 #include "GameStateMachine.h"
 #include "GameSDL.h"
@@ -11,6 +13,21 @@
 #include "ComponentInputKeyboard.h"
 #include "ManagerTexture.h"
 #include "Level.h"
+
+
+
+
+# define EM_JS_EXT(ret, name, params, paramsInJS, ...) \
+  _EM_JS_CPP_BEGIN                             \
+  extern ret name params EM_IMPORT(name);      \
+  __attribute__((used, visibility("default"))) \
+  const char* __em_js__##name() {              \
+    return #paramsInJS "<::>" #__VA_ARGS__;    \
+  }                                            \
+  _EM_JS_CPP_END
+
+
+
 
 
 class GameStateMenu : public GameState {

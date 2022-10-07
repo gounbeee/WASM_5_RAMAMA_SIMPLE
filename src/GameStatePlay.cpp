@@ -13,6 +13,9 @@ extern "C" {
 
 
 
+
+
+
 // CONSTRUCTOR
 GameStatePlay::GameStatePlay( MultiVectorStr4& xmlData ):m_tileNumColumns(0), m_tileNumRows(0) {
 	std::cout << "GameStatePlay::GameStatePlay() -- CONSTRUCTOR CALLED" << std::endl;
@@ -30,6 +33,7 @@ GameStatePlay::~GameStatePlay() {
 
 
 bool GameStatePlay::OnEnter() {                                                     // WHEN WE ENTER PLAY STATE
+	
 
 	// PREPARING LEVEL
     LevelDataLoader levelDataLoader;

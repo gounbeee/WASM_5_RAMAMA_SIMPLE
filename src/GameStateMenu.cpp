@@ -1,7 +1,8 @@
 
 #include <GameStateMenu.h>
-
 #include <GameStatePlay.h>
+
+
 
 
 
@@ -10,6 +11,63 @@ const std::string GameStateMenu::s_menuID = "MENU";
 
 
 extern "C" {
+
+
+
+// ------------------------------------------------------------------------------------------------------------------------
+// < JS-CONNECTION AREA >
+
+
+// ---------------------------------------------
+// < EM_JS MACRO FOR INVOKING JS-FUNCTION !!!! >
+// https://qiita.com/nokotan/items/35bea8b895eb7c9682de
+// 
+// 
+//
+//
+// 
+//
+//
+//
+
+EM_JS(int, prompt_number, (), {
+  var result = prompt('Please input number', '1');
+
+  return Number(result || '-1');
+});
+
+
+
+
+EM_JS(void, jsAlertWindow, (const char* title, const char* text), {
+  
+	var t1 = UTF8ToString(title);
+	var t2 = UTF8ToString(text);
+
+	wasmAlert(t1, t2);
+
+});
+
+
+
+// struct Vec2 {
+//   float x, y;
+// };
+
+
+// EM_JS_EXT(Vec2, makeVec2, (), (retPtr), {
+//   setValue(retPtr + 0, 300.0, 'float'); // 0 = Vec2::x
+//   setValue(retPtr + 4, 400.0, 'float'); // 4 = Vec2::y
+// });
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
@@ -43,6 +101,16 @@ GameStateMenu::~GameStateMenu() {
 
 // PUBLIC FUNCTIONS
 bool GameStateMenu::OnEnter() {
+
+
+
+
+  // Vec2 v = makeVec2();
+  // printf("%f, %f\n", v.x, v.y);
+
+
+
+
 
 	
 	// TODO :: USE m_textureInfo AND m_objectInfo TO STRINGS 
@@ -81,8 +149,8 @@ bool GameStateMenu::OnEnter() {
 	//id_a.resize( size_id_a+1, '\0');
 	Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity( id_a.data() ));
 	but_a.AddComponent<ComponentTransform>( 
-		std::stoi( m_objectInfo[0][XPOS] ) , 
-		std::stoi( m_objectInfo[0][YPOS] ) , 
+		std::stoi( m_objectInfo[0][XPOS] ), 
+		std::stoi( m_objectInfo[0][YPOS] ), 
 		std::stoi( m_objectInfo[0][VELOX] ), 
 		std::stoi( m_objectInfo[0][VELOY] ), 
 		std::stoi( m_objectInfo[0][WIDTH] ), 
@@ -99,7 +167,11 @@ bool GameStateMenu::OnEnter() {
 	but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_aboutBtn , id_b.data() );
 
 
-	
+
+
+	// ---------
+	// FOR DEBUG
+	//
 	// Entity& but_a( Instance_ManagerEntity::Instance()->AddEntity("btn_play"));
 	// but_a.AddComponent<ComponentTransform>( 200, 100, 0, 0, 400, 100, 1 );
 	// but_a.AddUIComponent<ComponentUIButton>( GameStateMenu::s_menuToPlay , "btn_play" );
@@ -109,8 +181,12 @@ bool GameStateMenu::OnEnter() {
 	// but_b.AddUIComponent<ComponentUIButton>( GameStateMenu::s_exitFromMenu , "btn_about" );
 	
 
+
+
     std::cout << "GameStateMenu::OnEnter() -- ENTERING MENU GAMESTATE" << std::endl;
     return true;
+
+
 }
 
 
@@ -141,6 +217,8 @@ void GameStateMenu::Update() {
 
 }
 
+
+
 void GameStateMenu::Render() {
 
 	Instance_ManagerEntity::Instance()->Render();
@@ -156,6 +234,8 @@ void GameStateMenu::Render() {
 
 
 }
+
+
 
 bool GameStateMenu::OnExit() {
 
@@ -174,19 +254,12 @@ bool GameStateMenu::OnExit() {
 void GameStateMenu::s_menuToPlay() {
 
 
-
-
-
 	Instance_GameSDL::Instance()->GetGameStateMachine()->ChangeState( new GameStatePlay( GameSDL::s_xmlData ) );
 
 
-
-
    	std::cout << "Play Button Clicked\n";
+
 }
-
-
-
 
 
 
@@ -197,6 +270,13 @@ void GameStateMenu::s_aboutBtn(){
 
 
     std::cout << "ABOUT Button Clicked\n";
+
+    
+
+
+
+    jsAlertWindow("HELLO", " WORLD !!!!");
+
 
 
 
